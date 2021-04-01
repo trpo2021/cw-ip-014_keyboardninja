@@ -11,3 +11,5 @@ $(SFMLLIB):
 	sudo apt-get install $(SFMLDEP)
 	cmake $(SFML)/CMakeLists.txt
 	make -f $(SFML)
+run: all
+	export LD_LIBRARY_PATH=$(SFMLLIB) && ./sfml-app
