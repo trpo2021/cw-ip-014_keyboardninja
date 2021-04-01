@@ -4,7 +4,7 @@ SFMLDEP := cmake-gui libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-
 SFMLLIB := lib/SFML/lib
 all: $(SFMLLIB)
 	g++ -c main.cpp -I. $(SFML)/include
-	g++ main.o -o sfml-app -L $(SFMLLIB) -lsfml-graphics -lsfml-window -lsfml-system
+	g++ main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
 $(SFMLLIB):
 	git submodule update --init --recursive
 	sudo apt-get install $(SFMLDEP)
