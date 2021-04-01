@@ -1,12 +1,13 @@
 
 SFML := lib/SFML
-SFMLDEP := cmake-gui libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev
-SFMLLIB := lib/SFML/lib
+SFMLDEP := cmake-gui libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev libgl1-mesa-dev xorg-dev 
+SFMLLIB := $(SFML)/lib
+LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 all: $(SFMLLIB)
-	g++ -c main.cpp -I. $(SFML)/include
-	g++ main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+	g++ -c main.cpp -I $(SFML)/include
+	g++ main.o -L $(SFMLLIB) -o sfml-app $(LIBS)
 $(SFMLLIB):
 	git submodule update --init --recursive
 	sudo apt-get install $(SFMLDEP)
 	cmake $(SFML)/CMakeLists.txt
-	make $(SFML)/Makefile
+	make -f $(SFML)
