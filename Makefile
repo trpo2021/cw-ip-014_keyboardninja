@@ -10,6 +10,6 @@ $(SFMLLIB):
 	git submodule update --init --recursive
 	sudo apt-get install $(SFMLDEP)
 	cmake $(SFML)/CMakeLists.txt
-	make -f $(SFML)
+	make -C $(SFML)
 run: all
 	export LD_LIBRARY_PATH=$(SFMLLIB) && ./sfml-app
