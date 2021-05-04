@@ -29,7 +29,7 @@ run: $(TARGET)
 	export LD_LIBRARY_PATH=$(SFMLLIB) && ./$(TARGET)
 
 $(TARGET): $(LIB) $(OBJ) $(SFMLLIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -L $(SFMLLIB) $(LIBS)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -L $(SFMLLIB) $(LIBS) 
 
 $(LIB): $(LIBOBJ)
 	ar rcs $@ $^
@@ -38,7 +38,7 @@ obj/src/%.o: src/lib/%.cpp
 	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I $(SFMLINCLUDE)
 
 obj/src/%.o: src/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I $(SFMLINCLUDE)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I $(SFMLINCLUDE) -I src/lib
 
 test: $(TESTTARGET)
 	./$(TESTTARGET)

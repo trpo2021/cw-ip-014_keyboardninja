@@ -22,11 +22,12 @@ int main() {
 	int Question = 1;
 	int x_mouse = 0;
 	int y_mouse = 0;
-	int result1 = 0;
+	/*int result1 = 0;
 	int result2 = 0;
 	int result3 = 0;
 	int result4 = 0;
 	int result5 = 0;
+	*/
 	RenderWindow window(VideoMode(W, H), "QuizRunner", sf::Style::Titlebar | sf::Style::Close);
 	Font font;
 	font.loadFromFile("times.ttf");
@@ -72,7 +73,7 @@ int main() {
 		window.clear();
 		QuesList[Question-1].text.setPosition(QuesList[Question-1].x, QuesList[Question-1].y);
 		window.draw(QuesList[Question-1].text);
-		for (int i = 0;i < SelectList.size();i++) {
+		for (int i = 0; (long unsigned int)i < SelectList.size();i++) {
 			window.draw(SelectList[i].rectangle);
 			/*Text but("",font,15);
 			if (SelectList[i].select) {
@@ -85,7 +86,7 @@ int main() {
 			window.draw(SelectList[i].Answer);
 			if ((SelectList[i].x + SelectList[i].size > x_mouse) and (SelectList[i].x - SelectList[i].size < x_mouse) and (SelectList[i].y + SelectList[i].size > y_mouse) and (SelectList[i].y - SelectList[i].size < y_mouse) and (SelectList[i].select == false)) {
 				SelectList[i].select = true;
-				for (int j = 0;j < SelectList.size();j++) {
+				for (int j = 0;(long unsigned int)j < SelectList.size();j++) {
 					if (i != j) {
 						SelectList[j].select = false;
 					}
@@ -102,7 +103,7 @@ int main() {
 		window.draw(NextSlide.rectangle);
 		window.draw(NextSlide.Answer);
 		if ((NextSlide.x + NextSlide.size > x_mouse) and (NextSlide.x - NextSlide.size < x_mouse) and (NextSlide.y + NextSlide.size > y_mouse) and (NextSlide.y - NextSlide.size < y_mouse) and (NextSlide.select == false)) {
-			for(int i = 0;i < SelectList.size();i++){
+			for(int i = 0;(long unsigned int)i < SelectList.size();i++){
 				if (SelectList[i].select == true) {
 					ScoreList.push_back(SelectList[i].score);
 					SelectList[i].select = false;
