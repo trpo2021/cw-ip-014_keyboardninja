@@ -1,59 +1,15 @@
 #include <SFML/Graphics.hpp>
+#include <gui_elements.h>
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <string>
+
 using namespace std;
 using namespace sf;
 
-
 const int W = 500;
 const int H = 500;
-
-struct JTextArea {
-	int x;
-	int y;
-	Text text;
-	JTextArea(int _x, int _y, Text _text) {
-		x = _x;
-		y = _y;
-		text = _text;
-		text.setFillColor(Color::White);
-	}
-};
-
-
-
-struct JButton {
-	RectangleShape rectangle;
-	int x;
-	int y;
-	int size;
-	int score;
-	int ques;
-	Text Answer;
-	bool select;
-	JButton(int _x, int _y, int _size, int _score, Text _answer,  String type){
-		x = _x;
-		y = _y;
-		size = _size;
-		Answer = _answer;
-		select = false;
-		rectangle.setSize(Vector2f(size,size));
-		rectangle.setFillColor(Color::Red);
-		rectangle.setPosition(x,y);
-		Answer.setPosition(x+20,y);
-		if (type == "select") {
-			score = _score;
-			ques = 1;
-		}
-		if (type == "service") {
-			cout << "Part of Thread----->" << endl;
-			select = true;
-		}
-	}
-};
-
 
 int main() {
 	setlocale(LC_ALL, "Rus");
@@ -71,16 +27,21 @@ int main() {
 	int result3 = 0;
 	int result4 = 0;
 	int result5 = 0;
-	RenderWindow window(VideoMode(W, H), "QuizRunner");
+	RenderWindow window(VideoMode(W, H), "QuizRunner", sf::Style::Titlebar | sf::Style::Close);
 	Font font;
 	font.loadFromFile("times.ttf");
 
 	Text text("No", font, 20);
-	SelectList.push_back(JButton(100,150,20,-2,Text("No",font,15),"select"));
-	SelectList.push_back(JButton(100,200,20,-1,Text("Maybe No", font, 15), "select"));
-	SelectList.push_back(JButton(100,250,20,0,Text("Yes and No", font, 15), "select"));
-	SelectList.push_back(JButton(100,300,20,1,Text("Maybe Yes", font, 15), "select"));
-	SelectList.push_back(JButton(100,350,20,2,Text("Yes", font, 15), "select"));
+	string answer_no = "Нет";
+	string answer_maybe_no = "Скорее нет, чем да";
+	string answer_dont_know = "Не знаю";
+	string answer_maybe_yes = "Скорее да, чем нет";
+	string answer_yes = "Да";
+	SelectList.push_back(JButton(100,150,20,-2,Text(sf::String::fromUtf8(answer_no.begin(), answer_no.end()),font,15),"select"));
+	SelectList.push_back(JButton(100,200,20,-1,Text(sf::String::fromUtf8(answer_maybe_no.begin(), answer_maybe_no.end()), font, 15), "select"));
+	SelectList.push_back(JButton(100,250,20,0,Text(sf::String::fromUtf8(answer_dont_know.begin(), answer_dont_know.end()), font, 15), "select"));
+	SelectList.push_back(JButton(100,300,20,1,Text(sf::String::fromUtf8(answer_maybe_yes.begin(), answer_maybe_yes.end()), font, 15), "select"));
+	SelectList.push_back(JButton(100,350,20,2,Text(sf::String::fromUtf8(answer_yes.begin(), answer_yes.end()), font, 15), "select"));
 	JButton NextSlide(300, 300, 20, 0, Text("Next Question", font, 30), "service");
 
 	window.setVerticalSyncEnabled(true);
@@ -99,7 +60,7 @@ int main() {
 		Event event;
 		while (window.pollEvent(event))
 		{
-			if ((event.type == Event::KeyPressed && event.key.code == Keyboard::Escape)) {
+			if ((event.type == Event::KeyPressed && event.key.code == Keyboard::Escape) || (event.type == sf::Event::Closed)) {
 				window.close();
 			}
 			if (event.type == Event::MouseButtonPressed) {
