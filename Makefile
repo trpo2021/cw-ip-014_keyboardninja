@@ -28,7 +28,7 @@ all: $(TARGET)
 run: $(TARGET)
 	cd bin; export LD_LIBRARY_PATH=$(SFMLLIB) && ./quizrunner
 
-$(TARGET): $(LIB) $(OBJ) $(SFMLLIB)
+$(TARGET):  $(SFMLLIB) $(LIB) $(OBJ)
 
 	$(CXX) $(CPPFLAGS) $(CFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -L$(SFMLLIB) $(LIBS) 
 
