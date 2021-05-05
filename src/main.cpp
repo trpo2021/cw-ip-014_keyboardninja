@@ -14,9 +14,9 @@ const int H = 500;
 int main()
 {
     setlocale(LC_ALL, "Rus");
-    vector<JTextArea> QuesList;
-    vector<JButton> SelectList;
-    vector<int> ScoreList;
+    vector<JTextArea> questions_list;
+    vector<JButton> selection_list;
+    vector<int> score_list;
     string line;
     string path = "questions.txt";
     ifstream in(path);
@@ -42,7 +42,7 @@ int main()
     string answer_dont_know = "Не знаю";
     string answer_maybe_yes = "Скорее да, чем нет";
     string answer_yes = "Да";
-    SelectList.push_back(JButton(
+    selection_list.push_back(JButton(
             100,
             150,
             20,
@@ -51,7 +51,7 @@ int main()
                  font,
                  15),
             "select"));
-    SelectList.push_back(JButton(
+    selection_list.push_back(JButton(
             100,
             200,
             20,
@@ -61,7 +61,7 @@ int main()
                  font,
                  15),
             "select"));
-    SelectList.push_back(JButton(
+    selection_list.push_back(JButton(
             100,
             250,
             20,
@@ -71,7 +71,7 @@ int main()
                  font,
                  15),
             "select"));
-    SelectList.push_back(JButton(
+    selection_list.push_back(JButton(
             100,
             300,
             20,
@@ -81,7 +81,7 @@ int main()
                  font,
                  15),
             "select"));
-    SelectList.push_back(JButton(
+    selection_list.push_back(JButton(
             100,
             350,
             20,
@@ -96,8 +96,8 @@ int main()
     window.setVerticalSyncEnabled(true);
     if (in.is_open()) {
         while (getline(in, line)) {
-            Text ltext(line, font, 20);
-            QuesList.push_back(JTextArea(100, 100, ltext));
+            Text ltext(sf::String::fromUtf8(line.begin(), line.end()), font, 20);
+            questions_list.push_back(JTextArea(100, 100, ltext));
         }
     }
     in.close();
@@ -117,37 +117,37 @@ int main()
             }
         }
         window.clear();
-        QuesList[Question - 1].text.setPosition(
-                QuesList[Question - 1].x, QuesList[Question - 1].y);
-        window.draw(QuesList[Question - 1].text);
-        for (int i = 0; (long unsigned int)i < SelectList.size(); i++) {
-            window.draw(SelectList[i].rectangle);
+        questions_list[Question - 1].text.setPosition(
+                questions_list[Question - 1].x, questions_list[Question - 1].y);
+        window.draw(questions_list[Question - 1].text);
+        for (int i = 0; (long unsigned int)i < selection_list.size(); i++) {
+            window.draw(selection_list[i].rectangle);
             /*Text but("",font,15);
-            if (SelectList[i].select) {
+            if (selection_list[i].select) {
                     but.setString("true");
             }
             else {
                     but.setString("false");
             }
-            but.setPosition(SelectList[i].x + 20, SelectList[i].y);*/
-            window.draw(SelectList[i].Answer);
-            if ((SelectList[i].x + SelectList[i].size > x_mouse)
-                and (SelectList[i].x - SelectList[i].size < x_mouse)
-                and (SelectList[i].y + SelectList[i].size > y_mouse)
-                and (SelectList[i].y - SelectList[i].size < y_mouse)
-                and (SelectList[i].select == false)) {
-                SelectList[i].select = true;
-                for (int j = 0; (long unsigned int)j < SelectList.size(); j++) {
+            but.setPosition(selection_list[i].x + 20, selection_list[i].y);*/
+            window.draw(selection_list[i].Answer);
+            if ((selection_list[i].x + selection_list[i].size > x_mouse)
+                and (selection_list[i].x - selection_list[i].size < x_mouse)
+                and (selection_list[i].y + selection_list[i].size > y_mouse)
+                and (selection_list[i].y - selection_list[i].size < y_mouse)
+                and (selection_list[i].select == false)) {
+                selection_list[i].select = true;
+                for (int j = 0; (long unsigned int)j < selection_list.size(); j++) {
                     if (i != j) {
-                        SelectList[j].select = false;
+                        selection_list[j].select = false;
                     }
                 }
                 NextSlide.select = false;
             }
-            if (SelectList[i].select == true) {
-                SelectList[i].rectangle.setFillColor(Color::Blue);
+            if (selection_list[i].select == true) {
+                selection_list[i].rectangle.setFillColor(Color::Blue);
             } else {
-                SelectList[i].rectangle.setFillColor(Color::Red);
+                selection_list[i].rectangle.setFillColor(Color::Red);
             }
         }
         window.draw(NextSlide.rectangle);
@@ -157,10 +157,10 @@ int main()
             and (NextSlide.y + NextSlide.size > y_mouse)
             and (NextSlide.y - NextSlide.size < y_mouse)
             and (NextSlide.select == false)) {
-            for (int i = 0; (long unsigned int)i < SelectList.size(); i++) {
-                if (SelectList[i].select == true) {
-                    ScoreList.push_back(SelectList[i].score);
-                    SelectList[i].select = false;
+            for (int i = 0; (long unsigned int)i < selection_list.size(); i++) {
+                if (selection_list[i].select == true) {
+                    score_list.push_back(selection_list[i].score);
+                    selection_list[i].select = false;
                 }
             }
             NextSlide.select = true;

@@ -26,7 +26,7 @@ LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 all: $(TARGET)
 
 run: $(TARGET)
-	cd bin; export LD_LIBRARY_PATH=$(SFMLLIB) && ./quizrunner
+	cd bin; export LD_LIBRARY_PATH=../$(SFMLLIB) && ./quizrunner
 
 $(TARGET):  $(SFMLLIB) $(LIB) $(OBJ)
 
