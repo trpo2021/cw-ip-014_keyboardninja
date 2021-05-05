@@ -26,28 +26,28 @@ LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 all: $(TARGET)
 
 run: $(TARGET)
-	export LD_LIBRARY_PATH=$(SFMLLIB) && ./$(TARGET)
+	cd bin; export LD_LIBRARY_PATH=$(SFMLLIB) && ./quizrunner
 
 $(TARGET): $(LIB) $(OBJ) $(SFMLLIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -L $(SFMLLIB) $(LIBS) 
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -L$(SFMLLIB) $(LIBS) 
 
 $(LIB): $(LIBOBJ)
 	ar rcs $@ $^
 
 obj/src/%.o: src/lib/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I $(SFMLINCLUDE)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I$(SFMLINCLUDE)
 
 obj/src/%.o: src/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I $(SFMLINCLUDE) -I src/lib
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib
 
 test: $(TESTTARGET)
 	./$(TESTTARGET)
 
 $(TESTTARGET): $(TESTOBJ) $(CTEST) $(LIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L. $(LIB) -I src/lib -I thirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L$(LIB) -I src/lib -Ithirdparty
 
 obj/test/%.o: test/%.cpp $(CTEST)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -I src/lib -I thirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -Isrc/lib -Ithirdparty
 	
 clean:
 	find . -name "*.d" -exec rm {} \;
