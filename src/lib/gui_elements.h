@@ -10,6 +10,9 @@
 using namespace sf;
 using namespace std;
 
+const int W = 500;
+const int H = 500;
+
 struct JTextArea {
     int x;
     int y;

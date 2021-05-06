@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
-
+void global_exam();
 
 #endif
