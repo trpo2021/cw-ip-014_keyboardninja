@@ -1,5 +1,6 @@
 #include "global_exam.h"
 #include "gui_elements.h"
+#include "gui_setup.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <fstream>
@@ -11,7 +12,9 @@ using namespace sf;
 
 void global_exam(){
     vector<JTextArea> questions_list;
-    vector<JButton> selection_list;
+    Font font;
+    font.loadFromFile("times.ttf");
+    vector<JButton> selection_list = generate_selection_list(font);
     vector<int> score_list;
     string line;
     string path = "questions.txt";
@@ -23,62 +26,6 @@ void global_exam(){
             VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    Font font;
-    font.loadFromFile("times.ttf");
-	string button_text_no = "Нет";
-	string button_text_maybe_no = "Скорее нет, чем да";
-	string button_text_dont_know = "Не знаю";
-	string button_text_maybe_yes = "Скорее да, чем нет";
-	string button_text_yes = "Да";
-
-    selection_list.push_back(JButton(
-            100,
-            150,
-            20,
-            -2,
-            Text(sf::String::fromUtf8(button_text_no.begin(), button_text_no.end()),
-                 font,
-                 15),
-            "select"));
-    selection_list.push_back(JButton(
-            100,
-            200,
-            20,
-            -1,
-            Text(sf::String::fromUtf8(
-                         button_text_maybe_no.begin(), button_text_maybe_no.end()),
-                 font,
-                 15),
-            "select"));
-    selection_list.push_back(JButton(
-            100,
-            250,
-            20,
-            0,
-            Text(sf::String::fromUtf8(
-                         button_text_dont_know.begin(), button_text_dont_know.end()),
-                 font,
-                 15),
-            "select"));
-    selection_list.push_back(JButton(
-            100,
-            300,
-            20,
-            1,
-            Text(sf::String::fromUtf8(
-                         button_text_maybe_yes.begin(), button_text_maybe_yes.end()),
-                 font,
-                 15),
-            "select"));
-    selection_list.push_back(JButton(
-            100,
-            350,
-            20,
-            2,
-            Text(sf::String::fromUtf8(button_text_yes.begin(), button_text_yes.end()),
-                 font,
-                 15),
-            "select"));
     JButton NextSlide(
             300, 300, 20, 0, Text("Next Question", font, 30), "service");
 
