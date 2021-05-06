@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
 
 using namespace sf;
 using namespace std;
@@ -16,7 +19,8 @@ struct JTextArea {
         this->x = x;
         this->y = y;
         this->text = text;
-        text.setFillColor(Color::White);
+        this->text.setFillColor(Color::White);
+		this->text.setPosition(x,y);
     }
 };
 
@@ -27,22 +31,22 @@ struct JButton {
     int size;
     int score;
     int ques;
-    Text Answer;
+    Text button_text;
     bool select;
-    JButton(int x, int y, int size, int score, Text answer, String type)
+    JButton(int x, int y, int size, int score, Text button_text, String type)
     {
         this->x = x;
         this->y = y;
         this->size = size;
-        this->Answer = answer;
+        this->button_text = button_text;
         select = false;
         rectangle.setSize(Vector2f(size, size));
         rectangle.setFillColor(Color::Red);
         rectangle.setPosition(x, y);
-        Answer.setPosition(x + 20, y);
+        this->button_text.setPosition(x + 20, y);
         if (type == "select") {
             this->score = score;
-            ques = 1;
+            ques = 0;
         }
         if (type == "service") {
             cout << "Part of Thread----->" << endl;
@@ -52,5 +56,7 @@ struct JButton {
 };
 
 void do_nothing();
+
+//void set_select_button(vector <JButton> &selection_list, int x, int y, int font_size, int rect_size, Font font);
 
 #endif
