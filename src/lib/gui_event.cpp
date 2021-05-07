@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 using namespace sf;
@@ -41,4 +42,11 @@ void event_key_press(Event &event, RenderWindow &window, int &x_mouse, int &y_mo
 	}
 }
 
+void add_score_scale(JButton button, vector<JScaleMettle> &scale_list) {
+	for (int i = 0;i < 5;i++) {
+		if (button.ques % 5 == i) {
+			scale_list[i].current_score += button.score;
+		}
+	}
+}
 

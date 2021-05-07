@@ -20,7 +20,7 @@ vector <JButton> generate_selection_list(Font& font){
             100,
             150,
             20,
-            -2,
+            5,
             Text(sf::String::fromUtf8(button_text_no.begin(), button_text_no.end()),
                  font,
                  15),
@@ -29,7 +29,7 @@ vector <JButton> generate_selection_list(Font& font){
             100,
             200,
             20,
-            -1,
+            4,
             Text(sf::String::fromUtf8(
                          button_text_maybe_no.begin(), button_text_maybe_no.end()),
                  font,
@@ -39,7 +39,7 @@ vector <JButton> generate_selection_list(Font& font){
             100,
             250,
             20,
-            0,
+            3,
             Text(sf::String::fromUtf8(
                          button_text_dont_know.begin(), button_text_dont_know.end()),
                  font,
@@ -49,7 +49,7 @@ vector <JButton> generate_selection_list(Font& font){
             100,
             300,
             20,
-            1,
+            2,
             Text(sf::String::fromUtf8(
                          button_text_maybe_yes.begin(), button_text_maybe_yes.end()),
                  font,
@@ -59,7 +59,7 @@ vector <JButton> generate_selection_list(Font& font){
             100,
             350,
             20,
-            2,
+            1,
             Text(sf::String::fromUtf8(button_text_yes.begin(), button_text_yes.end()),
                  font,
                  15),
@@ -78,6 +78,47 @@ vector <JTextArea>generate_questions_list(Font &font, ifstream &in) {
 	}
 	in.close();
 	return questions_list;
+}
+
+vector <JScaleMettle>generate_scale_list(Font &font) {
+	vector <JScaleMettle> scale_list;
+	string text_extroversion = "Экстраверсия   ";
+	string text_attachment = "Привязанность   ";
+	string text_self_control = "Самоконтроль   ";
+	string text_emotional_resilience = "Эмоциональная устройчивость   ";
+	string text_expressiveness = "Экспрессивность   ";
+
+	scale_list.push_back(JScaleMettle(
+		100,
+		150,
+		Text(sf::String::fromUtf8(text_extroversion.begin(), text_extroversion.end()),
+			font,
+			15)));
+	scale_list.push_back(JScaleMettle(
+		100,
+		200,
+		Text(sf::String::fromUtf8(text_attachment.begin(), text_attachment.end()),
+			font,
+			15)));
+	scale_list.push_back(JScaleMettle(
+		100,
+		250,
+		Text(sf::String::fromUtf8(text_self_control.begin(), text_self_control.end()),
+			font,
+			15)));
+	scale_list.push_back(JScaleMettle(
+		100,
+		300,
+		Text(sf::String::fromUtf8(text_emotional_resilience.begin(), text_emotional_resilience.end()),
+			font,
+			15)));
+	scale_list.push_back(JScaleMettle(
+		100,
+		350,
+		Text(sf::String::fromUtf8(text_expressiveness.begin(), text_expressiveness.end()),
+			font,
+			15)));
+	return scale_list;
 }
 
 

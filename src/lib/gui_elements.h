@@ -10,8 +10,23 @@
 using namespace sf;
 using namespace std;
 
-const int W = 500;
+const int W = 800;
 const int H = 500;
+
+struct JScaleMettle {
+	int x;
+	int y;
+	Text text;
+	float current_score;
+	JScaleMettle(int x, int y, Text text) {
+		this->x = x;
+		this->y = y;
+		this->text = text;
+		this->text.setFillColor(Color::White);
+		this->text.setPosition(x,y);
+		this->current_score = 0;
+	}
+};
 
 struct JTextArea {
     int x;
