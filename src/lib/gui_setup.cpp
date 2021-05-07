@@ -67,5 +67,18 @@ vector <JButton> generate_selection_list(Font& font){
             return selection_list;
 }
 
+vector <JTextArea>generate_questions_list(Font &font, ifstream &in) {
+	vector <JTextArea> questions_list;
+	string line;
+	if (in.is_open()) {
+		while (getline(in, line)) {
+			Text text(sf::String::fromUtf8(line.begin(), line.end()), font, 20);
+			questions_list.push_back(JTextArea(100, 100, text));
+		}
+	}
+	in.close();
+	return questions_list;
+}
+
 
 

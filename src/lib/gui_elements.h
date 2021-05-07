@@ -36,12 +36,12 @@ struct JButton {
     int ques;
     Text button_text;
     bool select;
-    JButton(int x, int y, int size, int score, Text button_text, String type)
+    JButton(int x, int y, int size, int score, Text _button_text, String type)
     {
         this->x = x;
         this->y = y;
         this->size = size;
-        this->button_text = button_text;
+        this->button_text = _button_text;
         select = false;
         rectangle.setSize(Vector2f(size, size));
         rectangle.setFillColor(Color::Red);
@@ -59,7 +59,5 @@ struct JButton {
 };
 
 void do_nothing();
-
-//void set_select_button(vector <JButton> &selection_list, int x, int y, int font_size, int rect_size, Font font);
 
 #endif
