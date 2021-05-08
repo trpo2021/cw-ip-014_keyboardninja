@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include <gui_elements.h>
 #include <global_exam.h>
+#include <gui_elements.h>
+
 
 int main()
 {
