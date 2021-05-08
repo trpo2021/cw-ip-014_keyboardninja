@@ -106,11 +106,10 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                              text_extroversion_ru.end()),
                      font,
                      15)));
-        int score_percent = int(score_list[0] * 75 / 100);
-
+        string score_percent = get_string_with_percents(score_list[0]);
         scale_list[scale_number].text.setString(
-                scale_list[scale_number].text.getString() + " "
-                + to_string(score_percent) + " " + "%");
+                scale_list[scale_number].text.getString() + " " + score_percent
+                + " " + "%");
         scale_number++;
     }
     if (score_list[1] > 0) {
@@ -122,10 +121,10 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                              text_agreeableness_ru.end()),
                      font,
                      15)));
-        int score_percent = int(score_list[1] * 75 / 100);
+        string score_percent = get_string_with_percents(score_list[1]);
         scale_list[scale_number].text.setString(
-                scale_list[scale_number].text.getString() + " "
-                + to_string(score_percent) + " " + "%");
+                scale_list[scale_number].text.getString() + " " + score_percent
+                + " " + "%");
         scale_number++;
     }
     if (score_list[2] > 0) {
@@ -137,10 +136,10 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                              text_conscientiousness_ru.end()),
                      font,
                      15)));
-        int score_percent = int(score_list[2] * 75 / 100);
+        string score_percent = get_string_with_percents(score_list[2]);
         scale_list[scale_number].text.setString(
-                scale_list[scale_number].text.getString() + " "
-                + to_string(score_percent) + " " + "%");
+                scale_list[scale_number].text.getString() + " " + score_percent
+                + " " + "%");
         scale_number++;
     }
     if (score_list[3] > 0) {
@@ -152,10 +151,10 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                              text_neuroticism_ru.end()),
                      font,
                      15)));
-        int score_percent = int(score_list[3] * 75 / 100);
+        string score_percent = get_string_with_percents(score_list[3]);
         scale_list[scale_number].text.setString(
-                scale_list[scale_number].text.getString() + " "
-                + to_string(score_percent) + " " + "%");
+                scale_list[scale_number].text.getString() + " " + score_percent
+                + " " + "%");
         scale_number++;
     }
     if (score_list[4] > 0) {
@@ -166,11 +165,16 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                              text_openness_ru.begin(), text_openness_ru.end()),
                      font,
                      15)));
-        int score_percent = int(score_list[4] * 75 / 100);
+        string score_percent = get_string_with_percents(score_list[4]);
         scale_list[scale_number].text.setString(
-                scale_list[scale_number].text.getString() + " "
-                + to_string(score_percent) + " " + "%");
+                scale_list[scale_number].text.getString() + " " + score_percent
+                + " " + "%");
         scale_number++;
     }
     return scale_list;
+}
+
+string get_string_with_percents(int score)
+{
+    return to_string(int(score * 75 / 100));
 }

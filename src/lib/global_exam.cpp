@@ -31,7 +31,8 @@ void global_exam()
             VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    string button_text_next_ques = "Следующий вопросик";
+    string button_text_next_ques = "Следующий вопрос";
+    string button_text_end_exam = "Завершить";
     JButton NextSlide(
             500,
             400,
@@ -52,6 +53,10 @@ void global_exam()
         window.clear();
         if ((long unsigned int)question != questions_list.size()) {
             window.draw(questions_list[question].text);
+            if ((long unsigned int)question == questions_list.size() - 1)
+                NextSlide.button_text.setString(sf::String::fromUtf8(
+                        button_text_end_exam.begin(),
+                        button_text_end_exam.end()));
 
             for (int i = 0; (long unsigned int)i < selection_list.size(); i++) {
                 window.draw(selection_list[i].rectangle);
