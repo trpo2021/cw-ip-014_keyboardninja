@@ -80,4 +80,27 @@ struct JButton {
     }
 };
 
+struct QuestionCounter {
+    int total_amount_of_questions;
+    sf::Text text;
+    QuestionCounter(
+            int total_amount_of_questions,
+            Font& font,
+            int font_size,
+            int x,
+            int y)
+    {
+        this->total_amount_of_questions = total_amount_of_questions;
+        text = Text("", font, font_size);
+        text.setFillColor(sf::Color::White);
+        text.setPosition(x, y);
+    }
+    void update(int number_of_current_question)
+    {
+        text.setString(
+                to_string(number_of_current_question) + "/"
+                + to_string(total_amount_of_questions));
+    }
+};
+
 #endif

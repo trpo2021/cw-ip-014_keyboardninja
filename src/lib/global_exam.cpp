@@ -37,8 +37,10 @@ void global_exam()
             20,
             0,
             Text(draw_russian("Следующий вопрос"), font, 15),
-            "service"); //!!!
+            "service");
     vector<JTextArea> questions_list = generate_questions_list(font, in);
+    QuestionCounter counter
+            = QuestionCounter(questions_list.size(), font, 15, 10, 10);
     while (window.isOpen()) {
         Event event;
         while (window.pollEvent(event)) {
@@ -47,6 +49,8 @@ void global_exam()
         window.clear();
         if ((long unsigned int)question != questions_list.size()) {
             window.draw(questions_list[question].text);
+            counter.update(question + 1);
+            window.draw(counter.text);
             if ((long unsigned int)question == questions_list.size() - 1)
                 NextSlide.button_text.setString(draw_russian("Завершить"));
 
