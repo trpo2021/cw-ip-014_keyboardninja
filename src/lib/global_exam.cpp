@@ -17,7 +17,7 @@ void global_exam()
     Font font;
     font.loadFromFile("times.ttf");
     vector<JButton> selection_list = generate_selection_list(font);
-    vector<JScaleMettle> scale_list; 
+    vector<JScaleMettle> scale_list;
     vector<int> score_list(5, 0);
     string line;
     string path = "questions.txt";
