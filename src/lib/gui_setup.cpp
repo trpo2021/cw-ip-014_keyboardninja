@@ -18,59 +18,31 @@ vector<JButton> generate_selection_list(Font& font)
     string button_text_maybe_yes = "Скорее да, чем нет";
     string button_text_yes = "Да";
 
-    selection_list.push_back(
-            JButton(100,
-                    150,
-                    20,
-                    5,
-                    Text(sf::String::fromUtf8(
-                                 button_text_no.begin(), button_text_no.end()),
-                         font,
-                         15),
-                    "select"));
+    selection_list.push_back(JButton(
+            100, 150, 20, 5, Text(draw_russian("Нет"), font, 15), "select"));
     selection_list.push_back(
             JButton(100,
                     200,
                     20,
                     4,
-                    Text(sf::String::fromUtf8(
-                                 button_text_maybe_no.begin(),
-                                 button_text_maybe_no.end()),
-                         font,
-                         15),
+                    Text(draw_russian("Скорее нет, чем да"), font, 15),
                     "select"));
     selection_list.push_back(
             JButton(100,
                     250,
                     20,
                     3,
-                    Text(sf::String::fromUtf8(
-                                 button_text_dont_know.begin(),
-                                 button_text_dont_know.end()),
-                         font,
-                         15),
+                    Text(draw_russian("Не знаю"), font, 15),
                     "select"));
     selection_list.push_back(
             JButton(100,
                     300,
                     20,
                     2,
-                    Text(sf::String::fromUtf8(
-                                 button_text_maybe_yes.begin(),
-                                 button_text_maybe_yes.end()),
-                         font,
-                         15),
+                    Text(draw_russian("Скорее да, чем нет"), font, 15),
                     "select"));
     selection_list.push_back(JButton(
-            100,
-            350,
-            20,
-            1,
-            Text(sf::String::fromUtf8(
-                         button_text_yes.begin(), button_text_yes.end()),
-                 font,
-                 15),
-            "select"));
+            100, 350, 20, 1, Text(draw_russian("Да"), font, 15), "select"));
     return selection_list;
 }
 
@@ -91,21 +63,10 @@ vector<JTextArea> generate_questions_list(Font& font, ifstream& in)
 vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
 {
     vector<JScaleMettle> scale_list;
-    string text_extroversion_ru = "Экстраверсия   ";
-    string text_agreeableness_ru = "Привязанность   ";
-    string text_conscientiousness_ru = "Самоконтроль   ";
-    string text_neuroticism_ru = "Эмоциональная устройчивость   ";
-    string text_openness_ru = "Экспрессивность   ";
     int scale_number = 0;
     if (score_list[0] > 0) {
         scale_list.push_back(JScaleMettle(
-                100,
-                150,
-                Text(sf::String::fromUtf8(
-                             text_extroversion_ru.begin(),
-                             text_extroversion_ru.end()),
-                     font,
-                     15)));
+                100, 150, Text(draw_russian("Экстраверсия   "), font, 15)));
         string score_percent = get_string_with_percents(score_list[0]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
@@ -114,13 +75,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
     }
     if (score_list[1] > 0) {
         scale_list.push_back(JScaleMettle(
-                100,
-                200,
-                Text(sf::String::fromUtf8(
-                             text_agreeableness_ru.begin(),
-                             text_agreeableness_ru.end()),
-                     font,
-                     15)));
+                100, 200, Text(draw_russian("Привязанность   "), font, 15)));
         string score_percent = get_string_with_percents(score_list[1]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
@@ -129,13 +84,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
     }
     if (score_list[2] > 0) {
         scale_list.push_back(JScaleMettle(
-                100,
-                250,
-                Text(sf::String::fromUtf8(
-                             text_conscientiousness_ru.begin(),
-                             text_conscientiousness_ru.end()),
-                     font,
-                     15)));
+                100, 250, Text(draw_russian("Самоконтроль   "), font, 15)));
         string score_percent = get_string_with_percents(score_list[2]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
@@ -146,9 +95,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
         scale_list.push_back(JScaleMettle(
                 100,
                 300,
-                Text(sf::String::fromUtf8(
-                             text_neuroticism_ru.begin(),
-                             text_neuroticism_ru.end()),
+                Text(draw_russian("Эмоциональная устройчивость   "),
                      font,
                      15)));
         string score_percent = get_string_with_percents(score_list[3]);
@@ -159,12 +106,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
     }
     if (score_list[4] > 0) {
         scale_list.push_back(JScaleMettle(
-                100,
-                350,
-                Text(sf::String::fromUtf8(
-                             text_openness_ru.begin(), text_openness_ru.end()),
-                     font,
-                     15)));
+                100, 350, Text(draw_russian("Экспрессивность   "), font, 15)));
         string score_percent = get_string_with_percents(score_list[4]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
@@ -177,4 +119,9 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
 string get_string_with_percents(int score)
 {
     return to_string(int(score * 75 / 100));
+}
+
+sf::String draw_russian(string line)
+{
+    return sf::String::fromUtf8(line.begin(), line.end());
 }

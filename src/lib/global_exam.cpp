@@ -31,18 +31,12 @@ void global_exam()
             VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    string button_text_next_ques = "Следующий вопрос";
-    string button_text_end_exam = "Завершить";
     JButton NextSlide(
             500,
             400,
             20,
             0,
-            Text(sf::String::fromUtf8(
-                         button_text_next_ques.begin(),
-                         button_text_next_ques.end()),
-                 font,
-                 15),
+            Text(draw_russian("Следующий вопрос"), font, 15),
             "service"); //!!!
     vector<JTextArea> questions_list = generate_questions_list(font, in);
     while (window.isOpen()) {
@@ -54,9 +48,7 @@ void global_exam()
         if ((long unsigned int)question != questions_list.size()) {
             window.draw(questions_list[question].text);
             if ((long unsigned int)question == questions_list.size() - 1)
-                NextSlide.button_text.setString(sf::String::fromUtf8(
-                        button_text_end_exam.begin(),
-                        button_text_end_exam.end()));
+                NextSlide.button_text.setString(draw_russian("Завершить"));
 
             for (int i = 0; (long unsigned int)i < selection_list.size(); i++) {
                 window.draw(selection_list[i].rectangle);
