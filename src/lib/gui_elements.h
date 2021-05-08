@@ -17,15 +17,21 @@ struct JScaleMettle {
     int x;
     int y;
     Text text;
-    float current_score;
-    JScaleMettle(int x, int y, Text text)
+    int score_percent;
+    sf::RectangleShape graphic_scale;
+    JScaleMettle(int x, int y, Text text, Color scale_color, int score_percent)
     {
         this->x = x;
         this->y = y;
         this->text = text;
         this->text.setFillColor(Color::White);
         this->text.setPosition(x, y);
-        this->current_score = 0;
+        sf::Vector2f scale_size;
+        scale_size.x = 50;
+        scale_size.y = -1.5 * score_percent;
+        graphic_scale.setSize(scale_size);
+        graphic_scale.setFillColor(scale_color);
+        graphic_scale.setPosition(x + 50, y - 20);
     }
 };
 

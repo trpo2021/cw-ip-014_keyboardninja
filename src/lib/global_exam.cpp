@@ -79,6 +79,7 @@ void global_exam()
             }
             for (int i = 0; (long unsigned int)i < scale_list.size(); i++) {
                 window.draw(scale_list[i].text);
+                window.draw(scale_list[i].graphic_scale);
             }
         }
         window.display();
