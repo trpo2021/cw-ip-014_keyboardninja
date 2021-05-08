@@ -63,5 +63,8 @@ clean:
 	find . -name "quizrunner" -exec rm {} \;
 	find . -name "testquizrunner" -exec rm {} \;
 
-
-.PHONY: clean run test all
+format:
+	cd src; find . -name "*.cpp" -exec clang-format -i {} \; 
+	cd src; find . -name "*.h" -exec clang-format -i {} \; 
+	
+.PHONY: clean run test all format
