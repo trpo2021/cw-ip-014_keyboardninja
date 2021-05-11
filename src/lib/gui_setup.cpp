@@ -65,7 +65,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                 300,
                 Text(draw_russian("Экстраверсия "), font, 15),
                 sf::Color::Green,
-                int(score_list[EXTRAVERSION] * 75 / 100)));
+                calculate_percent(score_list[EXTRAVERSION])));
         string score_percent
                 = get_string_with_percents(score_list[EXTRAVERSION]);
         scale_list[scale_number].text.setString(
@@ -79,7 +79,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                 300,
                 Text(draw_russian("Привязанность "), font, 15),
                 sf::Color::Magenta,
-                int(score_list[AGREEABLENESS] * 75 / 100)));
+                calculate_percent(score_list[AGREEABLENESS])));
         string score_percent
                 = get_string_with_percents(score_list[AGREEABLENESS]);
         scale_list[scale_number].text.setString(
@@ -93,7 +93,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                 300,
                 Text(draw_russian("Самоконтроль "), font, 15),
                 sf::Color::Yellow,
-                int(score_list[CONSCIENTIOUSNESS] * 75 / 100)));
+                calculate_percent(score_list[CONSCIENTIOUSNESS])));
         string score_percent
                 = get_string_with_percents(score_list[CONSCIENTIOUSNESS]);
         scale_list[scale_number].text.setString(
@@ -107,7 +107,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                 300,
                 Text(draw_russian("Эмоциональная уст. "), font, 15),
                 sf::Color::Blue,
-                int(score_list[NEUROCISM] * 75 / 100)));
+                calculate_percent(score_list[NEUROCISM])));
         string score_percent = get_string_with_percents(score_list[NEUROCISM]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
@@ -120,7 +120,7 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                 300,
                 Text(draw_russian("Экспрессивность "), font, 15),
                 sf::Color::Red,
-                int(score_list[OPENNESS] * 75 / 100)));
+                calculate_percent(score_list[OPENNESS])));
         string score_percent = get_string_with_percents(score_list[OPENNESS]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
@@ -132,7 +132,12 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
 
 string get_string_with_percents(int score)
 {
-    return to_string((int)(score * 75 / 100));
+    return to_string(calculate_percent(score));
+}
+
+int calculate_percent(int score)
+{
+    return (score / 0.01 / 75);
 }
 
 sf::String draw_russian(string line)

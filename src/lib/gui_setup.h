@@ -21,4 +21,6 @@ generate_scale_list(Font& font, vector<int> score_list);
 
 string get_string_with_percents(int score);
 
+int calculate_percent(int score);
+
 #endif
