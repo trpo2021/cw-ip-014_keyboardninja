@@ -1,5 +1,6 @@
 #include "gui_setup.h"
 #include "gui_elements.h"
+#include "one_scale_exam.h"
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
@@ -58,66 +59,69 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
 {
     vector<JScaleMettle> scale_list;
     int scale_number = 0;
-    if (score_list[0]) {
+    if (score_list[EXTRAVERSION]) {
         scale_list.push_back(JScaleMettle(
                 10,
                 300,
                 Text(draw_russian("Экстраверсия "), font, 15),
                 sf::Color::Green,
-                int(score_list[0] / 75 * 100)));
-        string score_percent = get_string_with_percents(score_list[0]);
+                int(score_list[EXTRAVERSION] / 75 * 100)));
+        string score_percent
+                = get_string_with_percents(score_list[EXTRAVERSION]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
                 + " " + "%");
         scale_number++;
     }
-    if (score_list[1]) {
+    if (score_list[AGREEABLENESS]) {
         scale_list.push_back(JScaleMettle(
                 150,
                 300,
                 Text(draw_russian("Привязанность "), font, 15),
                 sf::Color::Magenta,
-                int(score_list[1] / 75 * 100)));
-        string score_percent = get_string_with_percents(score_list[1]);
+                int(score_list[AGREEABLENESS] / 75 * 100)));
+        string score_percent
+                = get_string_with_percents(score_list[AGREEABLENESS]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
                 + " " + "%");
         scale_number++;
     }
-    if (score_list[2]) {
+    if (score_list[CONSCIENTIOUSNESS]) {
         scale_list.push_back(JScaleMettle(
                 300,
                 300,
                 Text(draw_russian("Самоконтроль "), font, 15),
                 sf::Color::Yellow,
-                int(score_list[2] / 75 * 100)));
-        string score_percent = get_string_with_percents(score_list[2]);
+                int(score_list[CONSCIENTIOUSNESS] / 75 * 100)));
+        string score_percent
+                = get_string_with_percents(score_list[CONSCIENTIOUSNESS]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
                 + " " + "%");
         scale_number++;
     }
-    if (score_list[3]) {
+    if (score_list[NEUROCISM]) {
         scale_list.push_back(JScaleMettle(
                 450,
                 300,
                 Text(draw_russian("Эмоциональная уст. "), font, 15),
                 sf::Color::Blue,
-                int(score_list[3] / 75 * 100)));
-        string score_percent = get_string_with_percents(score_list[3]);
+                int(score_list[NEUROCISM] / 75 * 100)));
+        string score_percent = get_string_with_percents(score_list[NEUROCISM]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
                 + " " + "%");
         scale_number++;
     }
-    if (score_list[4]) {
+    if (score_list[OPENNESS]) {
         scale_list.push_back(JScaleMettle(
                 630,
                 300,
                 Text(draw_russian("Экспрессивность "), font, 15),
                 sf::Color::Red,
-                int(score_list[4] / 75 * 100)));
-        string score_percent = get_string_with_percents(score_list[4]);
+                int(score_list[OPENNESS] / 75 * 100)));
+        string score_percent = get_string_with_percents(score_list[OPENNESS]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
                 + " " + "%");
@@ -134,4 +138,16 @@ string get_string_with_percents(int score)
 sf::String draw_russian(string line)
 {
     return sf::String::fromUtf8(line.begin(), line.end());
+}
+
+std::vector<JTextArea> generate_question_list_on_one_scale(
+        vector<JTextArea> question_list, int scale_number)
+{ //Номер шкалы от 0 до 4
+    vector<JTextArea> new_question_list;
+    int current_question_number = scale_number;
+    while (current_question_number < 75) {
+        new_question_list.push_back(question_list[current_question_number]);
+        current_question_number += 5;
+    }
+    return new_question_list;
 }
