@@ -57,3 +57,9 @@ void add_score_scale(JButton button, vector<int>& scale_list)
         }
     }
 }
+
+void add_score_scale_for_one_scale_exam(
+        JButton button, vector<int>& scale_list, int scale)
+{
+    scale_list[scale] += button.score;
+}

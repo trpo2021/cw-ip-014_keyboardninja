@@ -17,4 +17,8 @@ void event_key_press(
         Event& event, RenderWindow& window, int& x_mouse, int& y_mouse);
 
 void add_score_scale(JButton button, vector<int>& scale_list);
+
+void add_score_scale_for_one_scale_exam(
+        JButton button, vector<int>& scale_list, int scale);
+
 #endif
