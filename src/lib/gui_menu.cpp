@@ -14,28 +14,28 @@ vector<JButton> generate_menu_list(Font& font)
 {
     vector<JButton> selection_list;
     selection_list.push_back(
-            JButton(100,
+            JButton(300,
                     150,
                     20,
                     5,
                     Text(draw_russian("Глобальное тестирование"), font, 15),
                     "select"));
     selection_list.push_back(
-            JButton(100,
+            JButton(300,
                     200,
                     20,
                     4,
                     Text(draw_russian("Тестирование по выбору"), font, 15),
                     "select"));
     selection_list.push_back(
-            JButton(100,
+            JButton(300,
                     250,
                     20,
                     3,
                     Text(draw_russian("Случайное тестирование"), font, 15),
                     "select"));
     selection_list.push_back(JButton(
-            100, 300, 20, 2, Text(draw_russian("Выход"), font, 15), "select"));
+            300, 300, 20, 2, Text(draw_russian("Выход"), font, 15), "select"));
     return selection_list;
 }
 
