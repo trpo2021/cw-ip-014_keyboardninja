@@ -9,7 +9,8 @@
 sf::String
 draw_russian(std::string line); //Используйте её для отрисовки русского текста
 
-std::vector<JButton> generate_template_list(sf::Font& font, const std::vector<string>& dictionary);
+std::vector<JButton>
+generate_template_list(sf::Font& font, const std::vector<string>& dictionary);
 
 std::vector<JTextArea> generate_questions_list(sf::Font& font, ifstream& in);
 

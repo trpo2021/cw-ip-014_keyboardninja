@@ -10,7 +10,6 @@
 using namespace std;
 using namespace sf;
 
-
 vector<JButton>
 generate_template_list(Font& font, const vector<string>& dictionary)
 {
