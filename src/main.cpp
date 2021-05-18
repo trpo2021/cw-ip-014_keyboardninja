@@ -8,5 +8,4 @@
 int main()
 {
     menu();
-    // one_scale_exam(OPENNESS);
 }
