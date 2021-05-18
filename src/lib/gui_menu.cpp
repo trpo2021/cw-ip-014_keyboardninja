@@ -20,7 +20,7 @@ void temper_menu()
     dictionary.push_back("Добросовестность");
     dictionary.push_back("Невротизм");
     dictionary.push_back("Открытость");
-    vector<JButton> selection_list = generate_button_list(font, dictionary);
+    vector<JButton> selection_list = generate_template_list(font, dictionary);
     int x_mouse = 0;
     int y_mouse = 0;
     RenderWindow window(
@@ -70,7 +70,7 @@ void menu()
     dictionary.push_back("Тестирование по выбору");
     dictionary.push_back("Случайное тестирование");
     dictionary.push_back("Выйти");
-    vector<JButton> selection_list = generate_button_list(font, dictionary);
+    vector<JButton> selection_list = generate_template_list(font, dictionary);
     int x_mouse = 0;
     int y_mouse = 0;
     RenderWindow window(
