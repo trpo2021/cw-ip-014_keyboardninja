@@ -10,24 +10,6 @@
 #include <string>
 #include <vector>
 
-vector<JButton>
-generate_button_list(Font& font, const vector<string>& dictionary)
-{
-    vector<JButton> selection_list;
-    for (long unsigned int i = 0, k = 150, m = dictionary.size();
-         i < dictionary.size();
-         i++, k += 50, m--) {
-        selection_list.push_back(
-                JButton(300,
-                        k,
-                        20,
-                        m,
-                        Text(draw_russian(dictionary[i]), font, 15),
-                        "select"));
-    }
-    return selection_list;
-}
-
 void temper_menu()
 {
     Font font;
