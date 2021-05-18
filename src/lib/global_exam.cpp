@@ -22,7 +22,7 @@ void global_exam()
     string line;
     string path = "questions.txt";
     ifstream in(path);
-    int question = 0;
+    long unsigned int question = 0;
     int x_mouse = 0;
     int y_mouse = 0;
     bool flag_updating_scale = false;
@@ -47,14 +47,14 @@ void global_exam()
             event_key_press(event, window, x_mouse, y_mouse);
         }
         window.clear();
-        if ((long unsigned int)question != questions_list.size()) {
+        if (question != questions_list.size()) {
             window.draw(questions_list[question].text);
             counter.update(question + 1);
             window.draw(counter.text);
-            if ((long unsigned int)question == questions_list.size() - 1)
+            if (question == questions_list.size() - 1)
                 NextSlide.button_text.setString(draw_russian("Завершить"));
 
-            for (int i = 0; (long unsigned int)i < selection_list.size(); i++) {
+            for (long unsigned int i = 0; i < selection_list.size(); i++) {
                 window.draw(selection_list[i].rectangle);
                 window.draw(selection_list[i].button_text);
                 press_select_button(
@@ -66,8 +66,7 @@ void global_exam()
             if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse, y_mouse)
                 && (NextSlide.select == false)) {
                 question++;
-                for (int i = 0; (long unsigned int)i < selection_list.size();
-                     i++) {
+                for (long unsigned int i = 0; i < selection_list.size(); i++) {
                     if (selection_list[i].select == true) {
                         add_score_scale(selection_list[i], score_list);
                         selection_list[i].select = false;
@@ -81,7 +80,7 @@ void global_exam()
                 scale_list = generate_scale_list(font, score_list);
                 flag_updating_scale = true;
             }
-            for (int i = 0; (long unsigned int)i < scale_list.size(); i++) {
+            for (long unsigned int i = 0; i < scale_list.size(); i++) {
                 window.draw(scale_list[i].text);
                 window.draw(scale_list[i].graphic_scale);
             }

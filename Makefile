@@ -18,7 +18,6 @@ TESTTARGET := bin/testquizrunner
 CTEST := thirdparty/ctest.h
 
 SFML := thirdparty/SFML
-SFMLDEP := cmake-gui libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev libgl1-mesa-dev xorg-dev 
 SFMLLIB := $(SFML)/lib
 SFMLINCLUDE := $(SFML)/include
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system
@@ -34,7 +33,6 @@ $(TARGET):  $(SFMLLIB) $(LIB) $(OBJ)
 
 $(SFMLLIB):
 	git submodule update --init --recursive
-	sudo apt-get install $(SFMLDEP)
 	cmake $(SFML)/CMakeLists.txt
 	make -C $(SFML)
 

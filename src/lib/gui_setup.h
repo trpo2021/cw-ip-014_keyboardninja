@@ -11,15 +11,16 @@ draw_russian(std::string line); //Используйте её для отрис�
 
 std::vector<JButton> generate_selection_list(sf::Font& font);
 
-std::vector<JTextArea> generate_questions_list(sf::Font& font, ifstream& in);
+std::vector<JTextArea>
+generate_questions_list(sf::Font& font, std::ifstream& in);
 
 std::vector<JTextArea> generate_question_list_on_one_scale(
-        vector<JTextArea> question_list, int scale_number);
+        std::vector<JTextArea> question_list, int scale_number);
 
 std::vector<JScaleMettle>
-generate_scale_list(Font& font, vector<int> score_list);
+generate_scale_list(sf::Font& font, std::vector<int> score_list);
 
-string get_string_with_percents(int score);
+std::string get_string_with_percents(int score);
 
 int calculate_percent(int score);
 
