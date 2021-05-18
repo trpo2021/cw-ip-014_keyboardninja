@@ -4,6 +4,7 @@
 #include "gui_setup.h"
 #include "one_scale_exam.h"
 #include <SFML/Graphics.hpp>
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -63,6 +64,7 @@ void temper_menu()
 
 void menu()
 {
+    srand(time(NULL));
     Font font;
     font.loadFromFile("times.ttf");
     vector<string> dictionary;
@@ -97,11 +99,12 @@ void menu()
             window.close();
             temper_menu();
         } else if (selection_list[2].select) {
-            // random test
+            window.close();
+            int rand_num = rand() % 5;
+            one_scale_exam(rand_num);
         } else if (selection_list[3].select) {
             window.close();
         }
-
         window.display();
     }
 }
