@@ -17,25 +17,25 @@ void temper_menu()
     background_texture.loadFromFile("backgroundmenu.jpg");
     sf::Sprite backround_sprite;
     backround_sprite.setTexture(background_texture);
-    Font font;
+    sf::Font font;
     font.loadFromFile("times.ttf");
-    vector<string> dictionary;
+    std::vector<std::string> dictionary;
     dictionary.push_back("Экстраверсия");
     dictionary.push_back("Доброжелательность");
     dictionary.push_back("Добросовестность");
     dictionary.push_back("Невротизм");
     dictionary.push_back("Открытость");
-    vector<JButton> selection_list = generate_template_list(font, dictionary);
+    std::vector<JButton> selection_list = generate_template_list(font, dictionary);
     int x_mouse = 0;
     int y_mouse = 0;
-    RenderWindow window(
-            VideoMode(W, H),
+    sf::RenderWindow window(
+            sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
     JButton NextSlide(
-            500, 400, 20, 0, Text(draw_russian(" "), font, 15), "service");
+            500, 400, 20, 0, sf::Text(draw_russian(" "), font, 15), "service");
     while (window.isOpen()) {
-        Event event;
+        sf::Event event;
         while (window.pollEvent(event)) {
             event_key_press(event, window, x_mouse, y_mouse);
         }
@@ -76,24 +76,24 @@ void menu()
     sf::Sprite backround_sprite;
     backround_sprite.setTexture(background_texture);
     srand(time(NULL));
-    Font font;
+    sf::Font font;
     font.loadFromFile("times.ttf");
-    vector<string> dictionary;
+    std::vector<std::string> dictionary;
     dictionary.push_back("Глобальное тестирование");
     dictionary.push_back("Тестирование по выбору");
     dictionary.push_back("Случайное тестирование");
     dictionary.push_back("Выйти");
-    vector<JButton> selection_list = generate_template_list(font, dictionary);
+    std::vector<JButton> selection_list = generate_template_list(font, dictionary);
     int x_mouse = 0;
     int y_mouse = 0;
-    RenderWindow window(
-            VideoMode(W, H),
+    sf::RenderWindow window(
+            sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
     JButton NextSlide(
-            500, 400, 20, 0, Text(draw_russian(" "), font, 15), "service");
+            500, 400, 20, 0, sf::Text(draw_russian(" "), font, 15), "service");
     while (window.isOpen()) {
-        Event event;
+        sf::Event event;
         while (window.pollEvent(event)) {
             event_key_press(event, window, x_mouse, y_mouse);
         }
