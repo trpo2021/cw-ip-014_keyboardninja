@@ -25,7 +25,8 @@ void temper_menu()
     dictionary.push_back("Добросовестность");
     dictionary.push_back("Невротизм");
     dictionary.push_back("Открытость");
-    std::vector<JButton> selection_list = generate_template_list(font, dictionary);
+    std::vector<JButton> selection_list
+            = generate_template_list(font, dictionary);
     int x_mouse = 0;
     int y_mouse = 0;
     sf::RenderWindow window(
@@ -83,7 +84,8 @@ void menu()
     dictionary.push_back("Тестирование по выбору");
     dictionary.push_back("Случайное тестирование");
     dictionary.push_back("Выйти");
-    std::vector<JButton> selection_list = generate_template_list(font, dictionary);
+    std::vector<JButton> selection_list
+            = generate_template_list(font, dictionary);
     int x_mouse = 0;
     int y_mouse = 0;
     sf::RenderWindow window(
