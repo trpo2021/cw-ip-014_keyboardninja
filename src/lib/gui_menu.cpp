@@ -13,6 +13,10 @@
 
 void temper_menu()
 {
+    sf::Texture background_texture;
+    background_texture.loadFromFile("backgroundmenu.jpg");
+    sf::Sprite backround_sprite;
+    backround_sprite.setTexture(background_texture);
     Font font;
     font.loadFromFile("times.ttf");
     vector<string> dictionary;
@@ -35,12 +39,15 @@ void temper_menu()
         while (window.pollEvent(event)) {
             event_key_press(event, window, x_mouse, y_mouse);
         }
+
         window.clear();
+        window.draw(backround_sprite);
         for (long unsigned int i = 0; i < selection_list.size(); i++) {
             window.draw(selection_list[i].rectangle);
             window.draw(selection_list[i].button_text);
             press_select_button(selection_list, i, x_mouse, y_mouse, NextSlide);
         }
+
         if (selection_list[0].select) {
             window.close();
             one_scale_exam(EXTRAVERSION);
@@ -64,6 +71,10 @@ void temper_menu()
 
 void menu()
 {
+    sf::Texture background_texture;
+    background_texture.loadFromFile("backgroundmenu.jpg");
+    sf::Sprite backround_sprite;
+    backround_sprite.setTexture(background_texture);
     srand(time(NULL));
     Font font;
     font.loadFromFile("times.ttf");
@@ -87,6 +98,7 @@ void menu()
             event_key_press(event, window, x_mouse, y_mouse);
         }
         window.clear();
+        window.draw(backround_sprite);
         for (long unsigned int i = 0; i < selection_list.size(); i++) {
             window.draw(selection_list[i].rectangle);
             window.draw(selection_list[i].button_text);
