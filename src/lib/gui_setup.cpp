@@ -10,34 +10,23 @@
 using namespace std;
 using namespace sf;
 
-vector<JButton> generate_selection_list(Font& font)
+vector<JButton>
+generate_template_list(Font& font, const vector<string>& dictionary)
 {
     vector<JButton> selection_list;
-    selection_list.push_back(JButton(
-            100, 150, 20, 5, Text(draw_russian("Нет"), font, 15), "select"));
-    selection_list.push_back(
-            JButton(100,
-                    200,
-                    20,
-                    4,
-                    Text(draw_russian("Скорее нет, чем да"), font, 15),
-                    "select"));
-    selection_list.push_back(
-            JButton(100,
-                    250,
-                    20,
-                    3,
-                    Text(draw_russian("Не знаю"), font, 15),
-                    "select"));
-    selection_list.push_back(
-            JButton(100,
-                    300,
-                    20,
-                    2,
-                    Text(draw_russian("Скорее да, чем нет"), font, 15),
-                    "select"));
-    selection_list.push_back(JButton(
-            100, 350, 20, 1, Text(draw_russian("Да"), font, 15), "select"));
+    for (long unsigned int i = 0,
+                           y_begin_coordinate = 200,
+                           m = dictionary.size();
+         i < dictionary.size();
+         i++, y_begin_coordinate += 50, m--) {
+        selection_list.push_back(
+                JButton(300,
+                        y_begin_coordinate,
+                        20,
+                        m,
+                        Text(draw_russian(dictionary[i]), font, 15),
+                        "select"));
+    }
     return selection_list;
 }
 

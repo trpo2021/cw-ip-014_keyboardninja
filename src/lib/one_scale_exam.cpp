@@ -16,7 +16,13 @@ void one_scale_exam(int scale)
 {
     Font font;
     font.loadFromFile("times.ttf");
-    vector<JButton> selection_list = generate_selection_list(font);
+    vector<string> dictionary;
+    dictionary.push_back("Нет");
+    dictionary.push_back("Скорее нет, чем да");
+    dictionary.push_back("Не знаю");
+    dictionary.push_back("Скорее да, чем нет");
+    dictionary.push_back("Да");
+    vector<JButton> selection_list = generate_template_list(font, dictionary);
     vector<JScaleMettle> scale_list;
     vector<int> score_list(5, 0);
     string line;
