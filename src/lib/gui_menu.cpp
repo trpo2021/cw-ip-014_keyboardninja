@@ -49,19 +49,19 @@ void temper_menu()
             press_select_button(selection_list, i, x_mouse, y_mouse, NextSlide);
         }
 
-        if (selection_list[0].select) {
+        if (selection_list[EXTRAVERSION].select) {
             window.close();
             exam(ONE_SCALE, EXTRAVERSION);
-        } else if (selection_list[1].select) {
+        } else if (selection_list[AGREEABLENESS].select) {
             window.close();
             exam(ONE_SCALE, AGREEABLENESS);
-        } else if (selection_list[2].select) {
+        } else if (selection_list[CONSCIENTIOUSNESS].select) {
             window.close();
             exam(ONE_SCALE, CONSCIENTIOUSNESS);
-        } else if (selection_list[3].select) {
+        } else if (selection_list[NEUROTICISM].select) {
             window.close();
-            exam(ONE_SCALE, NEUROCISM);
-        } else if (selection_list[4].select) {
+            exam(ONE_SCALE, NEUROTICISM);
+        } else if (selection_list[OPENNESS].select) {
             window.close();
             exam(ONE_SCALE, OPENNESS);
         }
@@ -108,7 +108,7 @@ void menu()
         }
         if (selection_list[0].select) {
             window.close();
-            exam(GLOBAL, NONE);
+            exam(GLOBAL);
         } else if (selection_list[1].select) {
             window.close();
             temper_menu();

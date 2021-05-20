@@ -9,32 +9,30 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-using namespace sf;
 
-void exam(int mode, int scale)
+void exam(int mode, int scale )
 {
-    Font font;
+    sf::Font font;
     font.loadFromFile("times.ttf");
-    vector<string> dictionary;
+    std::vector<std::string> dictionary;
     dictionary.push_back("Нет");
     dictionary.push_back("Скорее нет, чем да");
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    vector<JButton> selection_list = generate_template_list(font, dictionary);
-    vector<JScaleMettle> scale_list;
-    vector<int> score_list(5, 0);
-    string line;
-    string path = "questions.txt";
-    ifstream in(path);
+    std::vector<JButton> selection_list = generate_template_list(font, dictionary);
+    std::vector<JScaleMettle> scale_list;
+    std::vector<int> score_list(5, 0);
+    std::string line;
+    std::string path = "questions.txt";
+    std::ifstream in(path);
     long unsigned int question = 0;
     int x_mouse = 0;
     int y_mouse = 0;
     bool flag_updating_scale = false;
-    ostringstream score_point;
+    std::ostringstream score_point;
     sf::RenderWindow window(
-            VideoMode(W, H),
+            sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
     JButton NextSlide(
@@ -42,9 +40,9 @@ void exam(int mode, int scale)
             400,
             20,
             0,
-            Text(draw_russian("Следующий вопрос"), font, 15),
+            sf::Text(draw_russian("Следующий вопрос"), font, 15),
             "service");
-    vector<JTextArea> questions_list = generate_questions_list(font, in);
+    std::vector<JTextArea> questions_list = generate_questions_list(font, in);
     if (mode != GLOBAL)
         questions_list
                 = generate_question_list_on_one_scale(questions_list, scale);
@@ -56,11 +54,11 @@ void exam(int mode, int scale)
             event_key_press(event, window, x_mouse, y_mouse);
         }
         window.clear();
-        if ((long unsigned int)question != questions_list.size()) {
+        if (question != questions_list.size()) {
             window.draw(questions_list[question].text);
             counter.update(question + 1);
             window.draw(counter.text);
-            if ((long unsigned int)question == questions_list.size() - 1)
+            if (question == questions_list.size() - 1)
                 NextSlide.button_text.setString(draw_russian("Завершить"));
 
             for (long unsigned int i = 0; i < selection_list.size(); i++) {

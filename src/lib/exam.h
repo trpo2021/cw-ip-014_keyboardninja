@@ -5,13 +5,13 @@ enum Scale {
     EXTRAVERSION,
     AGREEABLENESS,
     CONSCIENTIOUSNESS,
-    NEUROCISM,
+    NEUROTICISM,
     OPENNESS,
     NONE
 };
 
 enum Mode { GLOBAL, ONE_SCALE };
 
-void exam(int mode, int scale = NONE);
+void exam(int mode, int scale = -1);
 
 #endif
