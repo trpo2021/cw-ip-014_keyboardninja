@@ -9,8 +9,7 @@
 #include <string>
 #include <vector>
 
-
-void exam(int mode, int scale )
+void exam(int mode, int scale)
 {
     sf::Font font;
     font.loadFromFile("times.ttf");
@@ -20,7 +19,8 @@ void exam(int mode, int scale )
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    std::vector<JButton> selection_list = generate_template_list(font, dictionary);
+    std::vector<JButton> selection_list
+            = generate_template_list(font, dictionary);
     std::vector<JScaleMettle> scale_list;
     std::vector<int> score_list(5, 0);
     std::string line;

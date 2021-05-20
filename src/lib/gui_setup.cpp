@@ -97,7 +97,8 @@ vector<JScaleMettle> generate_scale_list(Font& font, vector<int> score_list)
                 Text(draw_russian("Эмоциональная уст. "), font, 15),
                 sf::Color::Blue,
                 calculate_percent(score_list[NEUROTICISM])));
-        string score_percent = get_string_with_percents(score_list[NEUROTICISM]);
+        string score_percent
+                = get_string_with_percents(score_list[NEUROTICISM]);
         scale_list[scale_number].text.setString(
                 scale_list[scale_number].text.getString() + " " + score_percent
                 + " " + "%");
