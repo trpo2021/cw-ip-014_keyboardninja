@@ -1,8 +1,8 @@
-#include "global_exam.h"
+#include "gui_menu.h"
+#include "exam.h"
 #include "gui_elements.h"
 #include "gui_event.h"
 #include "gui_setup.h"
-#include "one_scale_exam.h"
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <fstream>
@@ -51,19 +51,19 @@ void temper_menu()
 
         if (selection_list[0].select) {
             window.close();
-            one_scale_exam(EXTRAVERSION);
+            exam(ONE_SCALE, EXTRAVERSION);
         } else if (selection_list[1].select) {
             window.close();
-            one_scale_exam(AGREEABLENESS);
+            exam(ONE_SCALE, AGREEABLENESS);
         } else if (selection_list[2].select) {
             window.close();
-            one_scale_exam(CONSCIENTIOUSNESS);
+            exam(ONE_SCALE, CONSCIENTIOUSNESS);
         } else if (selection_list[3].select) {
             window.close();
-            one_scale_exam(NEUROCISM);
+            exam(ONE_SCALE, NEUROCISM);
         } else if (selection_list[4].select) {
             window.close();
-            one_scale_exam(OPENNESS);
+            exam(ONE_SCALE, OPENNESS);
         }
 
         window.display();
@@ -108,14 +108,14 @@ void menu()
         }
         if (selection_list[0].select) {
             window.close();
-            global_exam();
+            exam(GLOBAL, NONE);
         } else if (selection_list[1].select) {
             window.close();
             temper_menu();
         } else if (selection_list[2].select) {
             window.close();
             int rand_num = rand() % 5;
-            one_scale_exam(rand_num);
+            exam(ONE_SCALE, rand_num);
         } else if (selection_list[3].select) {
             window.close();
         }

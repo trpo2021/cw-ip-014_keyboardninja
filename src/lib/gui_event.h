@@ -16,9 +16,6 @@ bool press_select_button(
 void event_key_press(
         sf::Event& event, sf::RenderWindow& window, int& x_mouse, int& y_mouse);
 
-void add_score_scale(JButton button, std::vector<int>& scale_list);
-
-void add_score_scale_for_one_scale_exam(
-        JButton button, std::vector<int>& scale_list, int scale);
-
+void add_score_scale(
+        JButton button, std::vector<int>& scale_list, int mode, int scale);
 #endif

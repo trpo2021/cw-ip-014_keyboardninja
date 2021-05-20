@@ -1,6 +1,6 @@
 #include "gui_setup.h"
+#include "exam.h"
 #include "gui_elements.h"
-#include "one_scale_exam.h"
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
