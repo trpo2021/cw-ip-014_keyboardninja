@@ -1,4 +1,5 @@
 #include "gui_event.h"
+#include "exam.h"
 #include "gui_elements.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -49,17 +50,16 @@ void event_key_press(
     }
 }
 
-void add_score_scale(JButton button, vector<int>& scale_list)
+void add_score_scale(
+        JButton button, vector<int>& scale_list, int mode, int scale)
 {
-    for (int i = 0; i < 5; i++) {
-        if (button.ques % 5 == i) {
-            scale_list[i] += button.score;
+    if (mode == GLOBAL) {
+        for (int i = 0; i < 5; i++) {
+            if (button.ques % 5 == i) {
+                scale_list[i] += button.score;
+            }
         }
+    } else {
+        scale_list[scale] += button.score;
     }
-}
-
-void add_score_scale_for_one_scale_exam(
-        JButton button, vector<int>& scale_list, int scale)
-{
-    scale_list[scale] += button.score;
 }
