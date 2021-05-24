@@ -42,6 +42,13 @@ void exam(int mode, int scale)
             0,
             sf::Text(draw_russian("Следующий вопрос"), font, 15),
             "service");
+    JButton PrevSlide(
+            500,
+            200,
+            20,
+            0,
+            sf::Text(draw_russian("Предыдущий вопрос"), font, 15),
+            "service");
     std::vector<JTextArea> questions_list = generate_questions_list(font, in);
     if (mode != GLOBAL)
         questions_list
@@ -70,6 +77,8 @@ void exam(int mode, int scale)
 
             window.draw(NextSlide.rectangle);
             window.draw(NextSlide.button_text);
+            window.draw(PrevSlide.rectangle);
+            window.draw(PrevSlide.button_text);
             if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse, y_mouse)
                 && (NextSlide.select == false)) {
                 question++;
