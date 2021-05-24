@@ -118,6 +118,10 @@ void exam(int mode, int scale)
             window.draw(counter.text);
             if (question == questions_list.size() - 1)
                 NextSlide.button_text.setString(draw_russian("Завершить"));
+            else {
+                NextSlide.button_text.setString(
+                        draw_russian("Следующий вопрос"));
+            }
             for (long unsigned int j = 0;
                  j < slide_selection_list[question].size();
                  j++) {
@@ -139,8 +143,10 @@ void exam(int mode, int scale)
             }
             window.draw(NextSlide.rectangle);
             window.draw(NextSlide.button_text);
-            window.draw(PrevSlide.rectangle);
-            window.draw(PrevSlide.button_text);
+            if (question != 0) {
+                window.draw(PrevSlide.rectangle);
+                window.draw(PrevSlide.button_text);
+            }
             if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse, y_mouse)
                 && (NextSlide.select == false)) {
                 for (long unsigned int j = 0;
