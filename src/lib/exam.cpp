@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-void event_key_previos(
+void key_flip(
         sf::Event& event,
         bool flag,
         long unsigned int& ques,
@@ -95,14 +95,14 @@ void exam(int mode, int scale)
         sf::Event event;
         while (window.pollEvent(event)) {
             event_key_press(event, window, x_mouse, y_mouse);
-            event_key_previos(
+            key_flip(
                     event,
                     PrevSlide.rectangle.getGlobalBounds().contains(
                             x_mouse, y_mouse),
                     question,
                     0,
                     press);
-            event_key_previos(
+            key_flip(
                     event,
                     NextSlide.rectangle.getGlobalBounds().contains(
                             x_mouse, y_mouse),

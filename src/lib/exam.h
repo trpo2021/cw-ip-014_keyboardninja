@@ -13,7 +13,7 @@ enum Scale {
 
 enum Mode { GLOBAL, ONE_SCALE };
 
-void event_key_previos(
+void key_flip(
         sf::Event& event,
         bool flag,
         long unsigned int& ques,
