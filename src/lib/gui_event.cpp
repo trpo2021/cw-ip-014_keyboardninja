@@ -7,11 +7,8 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-using namespace sf;
-
 bool press_select_button(
-        vector<JButton>& selection_list,
+        std::vector<JButton>& selection_list,
         int i,
         int x_mouse,
         int y_mouse,
@@ -29,29 +26,30 @@ bool press_select_button(
         return true;
     }
     if (selection_list[i].select == true) {
-        selection_list[i].rectangle.setFillColor(Color::Blue);
+        selection_list[i].rectangle.setFillColor(sf::Color::Blue);
     } else {
-        selection_list[i].rectangle.setFillColor(Color::Red);
+        selection_list[i].rectangle.setFillColor(sf::Color::Red);
     }
     return false;
 }
 
 void event_key_press(
-        Event& event, RenderWindow& window, int& x_mouse, int& y_mouse)
+        sf::Event& event, sf::RenderWindow& window, int& x_mouse, int& y_mouse)
 {
-    if ((event.type == Event::KeyPressed && event.key.code == Keyboard::Escape)
+    if ((event.type == sf::Event::KeyPressed
+         && event.key.code == sf::Keyboard::Escape)
         || (event.type == sf::Event::Closed)) {
         window.close();
     }
-    if (event.type == Event::MouseButtonPressed) {
+    if (event.type == sf::Event::MouseButtonPressed) {
         x_mouse = event.mouseButton.x;
         y_mouse = event.mouseButton.y;
-        cout << x_mouse << "<----->" << y_mouse << endl;
+        std::cout << x_mouse << "<----->" << y_mouse << "\n";
     }
 }
 
 void add_score_scale(
-        JButton button, vector<int>& scale_list, int mode, int scale)
+        JButton button, std::vector<int>& scale_list, int mode, int scale)
 {
     if (mode == GLOBAL) {
         for (int i = 0; i < 5; i++) {
