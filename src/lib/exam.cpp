@@ -12,12 +12,20 @@
 void event_key_previos(
         sf::Event& event,
         bool flag,
-        long unsigned int& ques)
+        long unsigned int& ques,
+        bool mode,
+        bool press)
 {
     if (event.type == event.MouseButtonReleased
         && event.mouseButton.button == sf::Mouse::Left && flag) {
-        if (ques > 0) {
-            ques--;
+        if (mode == 0) {
+            if (ques > 0) {
+                ques--;
+            }
+        } else {
+            if (press) {
+                ques++;
+            }
         }
     }
 }
@@ -41,6 +49,7 @@ void exam(int mode, int scale)
     std::string path = "questions.txt";
     std::ifstream in(path);
     long unsigned int question = 0;
+    bool press = false;
     int x_mouse = 0;
     int y_mouse = 0;
     bool flag_updating_scale = false;
@@ -57,8 +66,8 @@ void exam(int mode, int scale)
             sf::Text(draw_russian("Следующий вопрос"), font, 15),
             "service");
     JButton PrevSlide(
-            500,
-            200,
+            80,
+            400,
             20,
             0,
             sf::Text(draw_russian("Предыдущий вопрос"), font, 15),
@@ -90,10 +99,20 @@ void exam(int mode, int scale)
                     event,
                     PrevSlide.rectangle.getGlobalBounds().contains(
                             x_mouse, y_mouse),
-                    question);
+                    question,
+                    0,
+                    press);
+            event_key_previos(
+                    event,
+                    NextSlide.rectangle.getGlobalBounds().contains(
+                            x_mouse, y_mouse),
+                    question,
+                    1,
+                    press);
         }
         window.clear();
         if (question != questions_list.size()) {
+            press = false;
             window.draw(questions_list[question].text);
             counter.update(question + 1);
             window.draw(counter.text);
@@ -111,23 +130,25 @@ void exam(int mode, int scale)
                         y_mouse,
                         NextSlide);
             }
+            for (long unsigned int j = 0;
+                 j < slide_selection_list[question].size();
+                 j++) {
+                if (slide_selection_list[question][j].select) {
+                    press = true;
+                }
+            }
             window.draw(NextSlide.rectangle);
             window.draw(NextSlide.button_text);
             window.draw(PrevSlide.rectangle);
             window.draw(PrevSlide.button_text);
             if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse, y_mouse)
                 && (NextSlide.select == false)) {
-                question++;
                 for (long unsigned int j = 0;
                      j < slide_selection_list[question].size();
                      j++) {
                     slide_selection_list[question][j].ques = question;
                 }
                 NextSlide.select = true;
-            }
-            if (PrevSlide.rectangle.getGlobalBounds().contains(
-                        x_mouse, y_mouse)) {
-                NextSlide.select = false;
             }
         } else {
             if (!flag_updating_scale) {
