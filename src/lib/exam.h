@@ -8,18 +8,18 @@ enum Scale {
     CONSCIENTIOUSNESS,
     NEUROTICISM,
     OPENNESS,
-    NONE
+    NONE = -1
 };
 
 enum Mode { GLOBAL, ONE_SCALE };
 
-void event_key_previos(
+void key_flip(
         sf::Event& event,
         bool flag,
         long unsigned int& ques,
         bool mode,
         bool press);
 
-void exam(int mode, int scale = -1);
+void exam(int mode, int scale = NONE);
 
 #endif
