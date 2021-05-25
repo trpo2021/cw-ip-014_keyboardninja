@@ -158,7 +158,7 @@ void exam(int mode, int scale)
             }
         } else {
             if (!flag_updating_scale) {
-                for (long unsigned int i = 0; i < question + 1; i++) {
+                for (long unsigned int i = 0; i < questions_list.size(); i++) {
                     for (long unsigned int j = 0;
                          j < slide_selection_list[i].size();
                          j++) {

@@ -8,7 +8,7 @@ enum Scale {
     CONSCIENTIOUSNESS,
     NEUROTICISM,
     OPENNESS,
-    NONE
+    NONE = -1
 };
 
 enum Mode { GLOBAL, ONE_SCALE };
@@ -20,6 +20,6 @@ void key_flip(
         bool mode,
         bool press);
 
-void exam(int mode, int scale = -1);
+void exam(int mode, int scale = NONE);
 
 #endif
