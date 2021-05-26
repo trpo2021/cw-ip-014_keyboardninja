@@ -2,8 +2,8 @@
 extern "C" {
 #include <ctest.h>
 }
-#include <vector>
 #include <gui_elements.h>
+#include <vector>
 
 CTEST(gen_template_list, selection_list)
 {
@@ -51,7 +51,7 @@ CTEST(gen_template_list, buillding_template_list)
     dictionary.push_back("Да");
     std::vector<JButton> selection_list1
             = generate_template_list(font, dictionary);
-     std::vector<JButton> selection_list2;
+    std::vector<JButton> selection_list2;
     for (long unsigned int i = 0,
                            y_begin_coordinate = 200,
                            m = dictionary.size();
@@ -66,8 +66,10 @@ CTEST(gen_template_list, buillding_template_list)
                         "select"));
     }
     bool result = true;
-    for(unsigned long int i = 0; i < selection_list1.size(); i++){
-        if(selection_list1[0].button_text.getString() != selection_list2[0].button_text.getString()) result = false;
+    for (unsigned long int i = 0; i < selection_list1.size(); i++) {
+        if (selection_list1[0].button_text.getString()
+            != selection_list2[0].button_text.getString())
+            result = false;
     }
     ASSERT_TRUE(result);
 }
@@ -84,7 +86,7 @@ CTEST(gen_template_list, fail_building_template_list)
     dictionary.push_back("Да");
     std::vector<JButton> selection_list1
             = generate_template_list(font, dictionary);
-     std::vector<JButton> selection_list2;
+    std::vector<JButton> selection_list2;
     for (long unsigned int i = 0,
                            y_begin_coordinate = 200,
                            m = dictionary.size();
@@ -95,12 +97,14 @@ CTEST(gen_template_list, fail_building_template_list)
                         y_begin_coordinate,
                         20,
                         m,
-                        sf::Text(draw_russian(dictionary[i+1]), font, 15),
+                        sf::Text(draw_russian(dictionary[i + 1]), font, 15),
                         "select"));
     }
     bool result = true;
-    for(unsigned long int i = 0; i < selection_list1.size(); i++){
-        if(selection_list1[0].button_text.getString() != selection_list2[0].button_text.getString()) result = false;
+    for (unsigned long int i = 0; i < selection_list1.size(); i++) {
+        if (selection_list1[0].button_text.getString()
+            != selection_list2[0].button_text.getString())
+            result = false;
     }
     ASSERT_FALSE(result);
 }

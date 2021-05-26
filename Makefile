@@ -64,5 +64,6 @@ clean:
 format:
 	cd src; find . -name "*.cpp" -exec clang-format -i {} \; 
 	cd src; find . -name "*.h" -exec clang-format -i {} \; 
+	cd test; find . -name "*.cpp" -exec clang-format -i {} \;  
 	
 .PHONY: clean run test all format
