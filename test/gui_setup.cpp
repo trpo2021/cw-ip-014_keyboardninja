@@ -2,8 +2,8 @@
 extern "C" {
 #include <ctest.h>
 }
-#include <gui_elements.h>
 #include <exam.h>
+#include <gui_elements.h>
 #include <vector>
 
 CTEST(gen_template_list, selection_list)
@@ -110,71 +110,83 @@ CTEST(gen_template_list, fail_building_template_list)
     ASSERT_FALSE(result);
 }
 
-CTEST(scale_drawing_suite, generate_scales_on_extraversion){
-        sf::Font font;
-        font.loadFromFile("times.ttf");
-        std::vector<int> score_list(5, 0);
-        score_list[EXTRAVERSION] = 54;
-    std::vector<JScaleMettle> scale_list = generate_scale_list(font, score_list);
+CTEST(scale_drawing_suite, generate_scales_on_extraversion)
+{
+    sf::Font font;
+    font.loadFromFile("times.ttf");
+    std::vector<int> score_list(5, 0);
+    score_list[EXTRAVERSION] = 54;
+    std::vector<JScaleMettle> scale_list
+            = generate_scale_list(font, score_list);
     unsigned long int expected = 1;
     unsigned long int result = scale_list.size();
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(scale_drawing_suite, generate_scales_on_agreeableness){
-        sf::Font font;
-        font.loadFromFile("times.ttf");
-        std::vector<int> score_list(5, 0);
-        score_list[AGREEABLENESS] = 32;
-    std::vector<JScaleMettle> scale_list = generate_scale_list(font, score_list);
+CTEST(scale_drawing_suite, generate_scales_on_agreeableness)
+{
+    sf::Font font;
+    font.loadFromFile("times.ttf");
+    std::vector<int> score_list(5, 0);
+    score_list[AGREEABLENESS] = 32;
+    std::vector<JScaleMettle> scale_list
+            = generate_scale_list(font, score_list);
     unsigned long int expected = 1;
     unsigned long int result = scale_list.size();
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(scale_drawing_suite, generate_scales_on_concientiousness){
-        sf::Font font;
-        font.loadFromFile("times.ttf");
-        std::vector<int> score_list(5, 0);
-        score_list[CONSCIENTIOUSNESS] = 61;
-    std::vector<JScaleMettle> scale_list = generate_scale_list(font, score_list);
+CTEST(scale_drawing_suite, generate_scales_on_concientiousness)
+{
+    sf::Font font;
+    font.loadFromFile("times.ttf");
+    std::vector<int> score_list(5, 0);
+    score_list[CONSCIENTIOUSNESS] = 61;
+    std::vector<JScaleMettle> scale_list
+            = generate_scale_list(font, score_list);
     unsigned long int expected = 1;
     unsigned long int result = scale_list.size();
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(scale_drawing_suite, generate_scales_on_neuroticism){
-        sf::Font font;
-        font.loadFromFile("times.ttf");
-        std::vector<int> score_list(5, 0);
-        score_list[NEUROTICISM] = 23;
-    std::vector<JScaleMettle> scale_list = generate_scale_list(font, score_list);
+CTEST(scale_drawing_suite, generate_scales_on_neuroticism)
+{
+    sf::Font font;
+    font.loadFromFile("times.ttf");
+    std::vector<int> score_list(5, 0);
+    score_list[NEUROTICISM] = 23;
+    std::vector<JScaleMettle> scale_list
+            = generate_scale_list(font, score_list);
     unsigned long int expected = 1;
     unsigned long int result = scale_list.size();
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(scale_drawing_suite, generate_scales_on_opennesS){
-        sf::Font font;
-        font.loadFromFile("times.ttf");
-        std::vector<int> score_list(5, 0);
-        score_list[OPENNESS] = 44;
-    std::vector<JScaleMettle> scale_list = generate_scale_list(font, score_list);
+CTEST(scale_drawing_suite, generate_scales_on_opennesS)
+{
+    sf::Font font;
+    font.loadFromFile("times.ttf");
+    std::vector<int> score_list(5, 0);
+    score_list[OPENNESS] = 44;
+    std::vector<JScaleMettle> scale_list
+            = generate_scale_list(font, score_list);
     unsigned long int expected = 1;
     unsigned long int result = scale_list.size();
     ASSERT_EQUAL(expected, result);
 }
 
-CTEST(scale_drawing_suite, generate_all_scales){
-        sf::Font font;
-        font.loadFromFile("times.ttf");
-        std::vector<int> score_list(5, 0);
-        score_list[EXTRAVERSION] = 54;
-        score_list[CONSCIENTIOUSNESS] = 34;
-        score_list[AGREEABLENESS] = 32;
-        score_list[NEUROTICISM] = 42;
-        score_list[OPENNESS] = 44;
-    std::vector<JScaleMettle> scale_list = generate_scale_list(font, score_list);
+CTEST(scale_drawing_suite, generate_all_scales)
+{
+    sf::Font font;
+    font.loadFromFile("times.ttf");
+    std::vector<int> score_list(5, 0);
+    score_list[EXTRAVERSION] = 54;
+    score_list[CONSCIENTIOUSNESS] = 34;
+    score_list[AGREEABLENESS] = 32;
+    score_list[NEUROTICISM] = 42;
+    score_list[OPENNESS] = 44;
+    std::vector<JScaleMettle> scale_list
+            = generate_scale_list(font, score_list);
     unsigned long int expected = 5;
     unsigned long int result = scale_list.size();
     ASSERT_EQUAL(expected, result);
