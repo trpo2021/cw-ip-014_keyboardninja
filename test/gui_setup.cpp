@@ -217,14 +217,16 @@ CTEST(questions_list, generate_list_with_all_questions)
     ASSERT_TRUE(is_equal);
 }
 
-
 CTEST(questions_list, generating_questions_list_on_one_scale_agreeableness)
 {
     sf::Font font;
     font.loadFromFile("times.ttf");
     std::ifstream input("questions.txt");
-    std::vector<JTextArea> global_questions_list = generate_questions_list(font, input);
-    std::vector<JTextArea> real_extraversion_scale_questions_list = generate_question_list_on_one_scale(global_questions_list, AGREEABLENESS);
+    std::vector<JTextArea> global_questions_list
+            = generate_questions_list(font, input);
+    std::vector<JTextArea> real_extraversion_scale_questions_list
+            = generate_question_list_on_one_scale(
+                    global_questions_list, AGREEABLENESS);
     std::vector<JTextArea> expected_question_list;
     int current_question_number = AGREEABLENESS;
     while (current_question_number < 75) {
@@ -233,7 +235,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_agreeableness)
         current_question_number += 5;
     }
     bool is_equal = true;
-    
+
     for (unsigned long int i = 0;
          i < real_extraversion_scale_questions_list.size();
          i++) {
@@ -241,7 +243,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_agreeableness)
             != expected_question_list[i].text.getString())
             is_equal = false;
     }
-    
+
     ASSERT_TRUE(is_equal);
 }
 
@@ -250,8 +252,11 @@ CTEST(questions_list, generating_questions_list_on_one_scale_conscientiousness)
     sf::Font font;
     font.loadFromFile("times.ttf");
     std::ifstream input("questions.txt");
-    std::vector<JTextArea> global_questions_list = generate_questions_list(font, input);
-    std::vector<JTextArea> real_extraversion_scale_questions_list = generate_question_list_on_one_scale(global_questions_list, CONSCIENTIOUSNESS);
+    std::vector<JTextArea> global_questions_list
+            = generate_questions_list(font, input);
+    std::vector<JTextArea> real_extraversion_scale_questions_list
+            = generate_question_list_on_one_scale(
+                    global_questions_list, CONSCIENTIOUSNESS);
     std::vector<JTextArea> expected_question_list;
     int current_question_number = CONSCIENTIOUSNESS;
     while (current_question_number < 75) {
@@ -260,7 +265,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_conscientiousness)
         current_question_number += 5;
     }
     bool is_equal = true;
-    
+
     for (unsigned long int i = 0;
          i < real_extraversion_scale_questions_list.size();
          i++) {
@@ -268,7 +273,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_conscientiousness)
             != expected_question_list[i].text.getString())
             is_equal = false;
     }
-    
+
     ASSERT_TRUE(is_equal);
 }
 
@@ -277,8 +282,11 @@ CTEST(questions_list, generating_questions_list_on_one_scale_neuroticism)
     sf::Font font;
     font.loadFromFile("times.ttf");
     std::ifstream input("questions.txt");
-    std::vector<JTextArea> global_questions_list = generate_questions_list(font, input);
-    std::vector<JTextArea> real_extraversion_scale_questions_list = generate_question_list_on_one_scale(global_questions_list, NEUROTICISM);
+    std::vector<JTextArea> global_questions_list
+            = generate_questions_list(font, input);
+    std::vector<JTextArea> real_extraversion_scale_questions_list
+            = generate_question_list_on_one_scale(
+                    global_questions_list, NEUROTICISM);
     std::vector<JTextArea> expected_question_list;
     int current_question_number = NEUROTICISM;
     while (current_question_number < 75) {
@@ -287,7 +295,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_neuroticism)
         current_question_number += 5;
     }
     bool is_equal = true;
-    
+
     for (unsigned long int i = 0;
          i < real_extraversion_scale_questions_list.size();
          i++) {
@@ -295,7 +303,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_neuroticism)
             != expected_question_list[i].text.getString())
             is_equal = false;
     }
-    
+
     ASSERT_TRUE(is_equal);
 }
 
@@ -304,8 +312,11 @@ CTEST(questions_list, generating_questions_list_on_one_scale_openness)
     sf::Font font;
     font.loadFromFile("times.ttf");
     std::ifstream input("questions.txt");
-    std::vector<JTextArea> global_questions_list = generate_questions_list(font, input);
-    std::vector<JTextArea> real_extraversion_scale_questions_list = generate_question_list_on_one_scale(global_questions_list, OPENNESS);
+    std::vector<JTextArea> global_questions_list
+            = generate_questions_list(font, input);
+    std::vector<JTextArea> real_extraversion_scale_questions_list
+            = generate_question_list_on_one_scale(
+                    global_questions_list, OPENNESS);
     std::vector<JTextArea> expected_question_list;
     int current_question_number = OPENNESS;
     while (current_question_number < 75) {
@@ -314,7 +325,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_openness)
         current_question_number += 5;
     }
     bool is_equal = true;
-    
+
     for (unsigned long int i = 0;
          i < real_extraversion_scale_questions_list.size();
          i++) {
@@ -322,7 +333,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_openness)
             != expected_question_list[i].text.getString())
             is_equal = false;
     }
-    
+
     ASSERT_TRUE(is_equal);
 }
 
@@ -331,8 +342,11 @@ CTEST(questions_list, generating_questions_list_on_one_scale_agreableness)
     sf::Font font;
     font.loadFromFile("times.ttf");
     std::ifstream input("questions.txt");
-    std::vector<JTextArea> global_questions_list = generate_questions_list(font, input);
-    std::vector<JTextArea> real_extraversion_scale_questions_list = generate_question_list_on_one_scale(global_questions_list, AGREEABLENESS);
+    std::vector<JTextArea> global_questions_list
+            = generate_questions_list(font, input);
+    std::vector<JTextArea> real_extraversion_scale_questions_list
+            = generate_question_list_on_one_scale(
+                    global_questions_list, AGREEABLENESS);
     std::vector<JTextArea> expected_question_list;
     int current_question_number = AGREEABLENESS;
     while (current_question_number < 75) {
@@ -341,7 +355,7 @@ CTEST(questions_list, generating_questions_list_on_one_scale_agreableness)
         current_question_number += 5;
     }
     bool is_equal = true;
-    
+
     for (unsigned long int i = 0;
          i < real_extraversion_scale_questions_list.size();
          i++) {
@@ -349,11 +363,6 @@ CTEST(questions_list, generating_questions_list_on_one_scale_agreableness)
             != expected_question_list[i].text.getString())
             is_equal = false;
     }
-    
+
     ASSERT_TRUE(is_equal);
 }
-
-
-
-
-
