@@ -25,20 +25,20 @@ void temper_menu()
     dictionary.push_back("Добросовестность");
     dictionary.push_back("Невротизм");
     dictionary.push_back("Открытость");
-    std::vector<JButton> selection_list
+    std::vector<Button> selection_list
             = generate_template_list(font, dictionary);
-    int x_mouse = 0;
-    int y_mouse = 0;
+    int x_mouse_position = 0;
+    int y_mouse_position = 0;
     sf::RenderWindow window(
             sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    JButton NextSlide(
+    Button NextSlide(
             500, 400, 20, 0, sf::Text(draw_russian(" "), font, 15), "service");
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            event_key_press(event, window, x_mouse, y_mouse);
+            event_key_press(event, window, x_mouse_position, y_mouse_position);
         }
 
         window.clear();
@@ -46,7 +46,7 @@ void temper_menu()
         for (long unsigned int i = 0; i < selection_list.size(); i++) {
             window.draw(selection_list[i].rectangle);
             window.draw(selection_list[i].button_text);
-            press_select_button(selection_list, i, x_mouse, y_mouse, NextSlide);
+            press_select_button(selection_list, i, x_mouse_position, y_mouse_position, NextSlide);
         }
 
         if (selection_list[EXTRAVERSION].select) {
@@ -84,27 +84,27 @@ void menu()
     dictionary.push_back("Тестирование по выбору");
     dictionary.push_back("Случайное тестирование");
     dictionary.push_back("Выйти");
-    std::vector<JButton> selection_list
+    std::vector<Button> selection_list
             = generate_template_list(font, dictionary);
-    int x_mouse = 0;
-    int y_mouse = 0;
+    int x_mouse_position = 0;
+    int y_mouse_position = 0;
     sf::RenderWindow window(
             sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    JButton NextSlide(
+    Button NextSlide(
             500, 400, 20, 0, sf::Text(draw_russian(" "), font, 15), "service");
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            event_key_press(event, window, x_mouse, y_mouse);
+            event_key_press(event, window, x_mouse_position, y_mouse_position);
         }
         window.clear();
         window.draw(backround_sprite);
         for (long unsigned int i = 0; i < selection_list.size(); i++) {
             window.draw(selection_list[i].rectangle);
             window.draw(selection_list[i].button_text);
-            press_select_button(selection_list, i, x_mouse, y_mouse, NextSlide);
+            press_select_button(selection_list, i, x_mouse_position, y_mouse_position, NextSlide);
         }
         if (selection_list[0].select) {
             window.close();

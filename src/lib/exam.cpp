@@ -40,9 +40,9 @@ void exam(int mode, int scale)
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    std::vector<JButton> selection_list
+    std::vector<Button> selection_list
             = generate_template_list(font, dictionary);
-    std::vector<std::vector<JButton>> slide_selection_list;
+    std::vector<std::vector<Button>> slide_selection_list;
     std::vector<JScaleMettle> scale_list;
     std::vector<int> score_list(5, 0);
     std::string line;
@@ -50,22 +50,22 @@ void exam(int mode, int scale)
     std::ifstream in(path);
     long unsigned int question = 0;
     bool press = false;
-    int x_mouse = 0;
-    int y_mouse = 0;
+    int x_mouse_position = 0;
+    int y_mouse_position = 0;
     bool flag_updating_scale = false;
     std::ostringstream score_point;
     sf::RenderWindow window(
             sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    JButton NextSlide(
+    Button NextSlide(
             500,
             400,
             20,
             0,
             sf::Text(draw_russian("Следующий вопрос"), font, 15),
             "service");
-    JButton PrevSlide(
+    Button PrevSlide(
             80,
             400,
             20,
@@ -94,18 +94,18 @@ void exam(int mode, int scale)
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            event_key_press(event, window, x_mouse, y_mouse);
+            event_key_press(event, window, x_mouse_position, y_mouse_position);
             key_flip(
                     event,
                     PrevSlide.rectangle.getGlobalBounds().contains(
-                            x_mouse, y_mouse),
+                            x_mouse_position, y_mouse_position),
                     question,
                     0,
                     press);
             key_flip(
                     event,
                     NextSlide.rectangle.getGlobalBounds().contains(
-                            x_mouse, y_mouse),
+                            x_mouse_position, y_mouse_position),
                     question,
                     1,
                     press);
@@ -130,8 +130,8 @@ void exam(int mode, int scale)
                 press_select_button(
                         slide_selection_list[question],
                         j,
-                        x_mouse,
-                        y_mouse,
+                        x_mouse_position,
+                        y_mouse_position,
                         NextSlide);
             }
             for (long unsigned int j = 0;
@@ -147,7 +147,7 @@ void exam(int mode, int scale)
                 window.draw(PrevSlide.rectangle);
                 window.draw(PrevSlide.button_text);
             }
-            if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse, y_mouse)
+            if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse_position, y_mouse_position)
                 && (NextSlide.select == false)) {
                 for (long unsigned int j = 0;
                      j < slide_selection_list[question].size();
