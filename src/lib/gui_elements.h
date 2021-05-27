@@ -61,11 +61,11 @@ struct Button {
     sf::Text button_text;
     bool select;
     Button(int x,
-            int y,
-            int size,
-            int score,
-            sf::Text _button_text,
-            sf::String type)
+           int y,
+           int size,
+           int score,
+           sf::Text _button_text,
+           sf::String type)
     {
         this->x = x;
         this->y = y;

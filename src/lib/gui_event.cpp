@@ -14,7 +14,8 @@ bool press_select_button(
         int y_mouse_position,
         Button& NextSlide)
 {
-    if (selection_list[i].rectangle.getGlobalBounds().contains(x_mouse_position, y_mouse_position)
+    if (selection_list[i].rectangle.getGlobalBounds().contains(
+                x_mouse_position, y_mouse_position)
         && (selection_list[i].select == false)) {
         selection_list[i].select = true;
         for (int j = 0; (long unsigned int)j < selection_list.size(); j++) {
@@ -34,7 +35,10 @@ bool press_select_button(
 }
 
 void event_key_press(
-        sf::Event& event, sf::RenderWindow& window, int& x_mouse_position, int& y_mouse_position)
+        sf::Event& event,
+        sf::RenderWindow& window,
+        int& x_mouse_position,
+        int& y_mouse_position)
 {
     if ((event.type == sf::Event::KeyPressed
          && event.key.code == sf::Keyboard::Escape)

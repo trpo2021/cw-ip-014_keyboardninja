@@ -147,7 +147,8 @@ void exam(int mode, int scale)
                 window.draw(PrevSlide.rectangle);
                 window.draw(PrevSlide.button_text);
             }
-            if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse_position, y_mouse_position)
+            if (NextSlide.rectangle.getGlobalBounds().contains(
+                        x_mouse_position, y_mouse_position)
                 && (NextSlide.select == false)) {
                 for (long unsigned int j = 0;
                      j < slide_selection_list[question].size();

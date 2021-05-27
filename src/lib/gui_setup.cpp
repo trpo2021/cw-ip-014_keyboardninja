@@ -18,11 +18,11 @@ std::vector<Button> generate_template_list(
          i++, y_begin_coordinate += 50, m--) {
         selection_list.push_back(
                 Button(300,
-                        y_begin_coordinate,
-                        20,
-                        m,
-                        sf::Text(draw_russian(dictionary[i]), font, 15),
-                        "select"));
+                       y_begin_coordinate,
+                       20,
+                       m,
+                       sf::Text(draw_russian(dictionary[i]), font, 15),
+                       "select"));
     }
     return selection_list;
 }

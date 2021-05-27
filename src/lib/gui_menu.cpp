@@ -46,7 +46,12 @@ void temper_menu()
         for (long unsigned int i = 0; i < selection_list.size(); i++) {
             window.draw(selection_list[i].rectangle);
             window.draw(selection_list[i].button_text);
-            press_select_button(selection_list, i, x_mouse_position, y_mouse_position, NextSlide);
+            press_select_button(
+                    selection_list,
+                    i,
+                    x_mouse_position,
+                    y_mouse_position,
+                    NextSlide);
         }
 
         if (selection_list[EXTRAVERSION].select) {
@@ -104,7 +109,12 @@ void menu()
         for (long unsigned int i = 0; i < selection_list.size(); i++) {
             window.draw(selection_list[i].rectangle);
             window.draw(selection_list[i].button_text);
-            press_select_button(selection_list, i, x_mouse_position, y_mouse_position, NextSlide);
+            press_select_button(
+                    selection_list,
+                    i,
+                    x_mouse_position,
+                    y_mouse_position,
+                    NextSlide);
         }
         if (selection_list[0].select) {
             window.close();

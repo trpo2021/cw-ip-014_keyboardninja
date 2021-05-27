@@ -14,7 +14,10 @@ bool press_select_button(
         Button& NextSlide);
 
 void event_key_press(
-        sf::Event& event, sf::RenderWindow& window, int& x_mouse_position, int& y_mouse_position);
+        sf::Event& event,
+        sf::RenderWindow& window,
+        int& x_mouse_position,
+        int& y_mouse_position);
 
 void add_score_scale(
         Button button, std::vector<int>& scale_list, int mode, int scale);
