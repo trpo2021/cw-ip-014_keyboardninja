@@ -51,7 +51,7 @@ struct JTextArea {
     }
 };
 
-struct JButton {
+struct Button {
     sf::RectangleShape rectangle;
     int x;
     int y;
@@ -60,12 +60,12 @@ struct JButton {
     int ques;
     sf::Text button_text;
     bool select;
-    JButton(int x,
-            int y,
-            int size,
-            int score,
-            sf::Text _button_text,
-            sf::String type)
+    Button(int x,
+           int y,
+           int size,
+           int score,
+           sf::Text _button_text,
+           sf::String type)
     {
         this->x = x;
         this->y = y;
