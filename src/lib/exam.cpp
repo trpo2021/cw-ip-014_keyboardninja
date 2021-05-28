@@ -58,7 +58,7 @@ void exam(int mode, int scale)
             sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    Button NextSlide(
+    Button next_slide(
             500,
             400,
             20,
@@ -104,7 +104,7 @@ void exam(int mode, int scale)
                     press);
             key_flip(
                     event,
-                    NextSlide.rectangle.getGlobalBounds().contains(
+                    next_slide.rectangle.getGlobalBounds().contains(
                             x_mouse_position, y_mouse_position),
                     question,
                     1,
@@ -117,9 +117,9 @@ void exam(int mode, int scale)
             counter.update(question + 1);
             window.draw(counter.text);
             if (question == questions_list.size() - 1)
-                NextSlide.button_text.setString(draw_russian("Завершить"));
+                next_slide.button_text.setString(draw_russian("Завершить"));
             else {
-                NextSlide.button_text.setString(
+                next_slide.button_text.setString(
                         draw_russian("Следующий вопрос"));
             }
             for (long unsigned int j = 0;
@@ -132,7 +132,7 @@ void exam(int mode, int scale)
                         j,
                         x_mouse_position,
                         y_mouse_position,
-                        NextSlide);
+                        next_slide);
             }
             for (long unsigned int j = 0;
                  j < slide_selection_list[question].size();
@@ -141,21 +141,21 @@ void exam(int mode, int scale)
                     press = true;
                 }
             }
-            window.draw(NextSlide.rectangle);
-            window.draw(NextSlide.button_text);
+            window.draw(next_slide.rectangle);
+            window.draw(next_slide.button_text);
             if (question != 0) {
                 window.draw(PrevSlide.rectangle);
                 window.draw(PrevSlide.button_text);
             }
-            if (NextSlide.rectangle.getGlobalBounds().contains(
+            if (next_slide.rectangle.getGlobalBounds().contains(
                         x_mouse_position, y_mouse_position)
-                && (NextSlide.select == false)) {
+                && (next_slide.select == false)) {
                 for (long unsigned int j = 0;
                      j < slide_selection_list[question].size();
                      j++) {
                     slide_selection_list[question][j].ques = question;
                 }
-                NextSlide.select = true;
+                next_slide.select = true;
             }
         } else {
             if (!flag_updating_scale) {

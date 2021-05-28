@@ -12,7 +12,7 @@ bool press_select_button(
         int i,
         int x_mouse_position,
         int y_mouse_position,
-        Button& NextSlide)
+        Button& next_slide)
 {
     if (selection_list[i].rectangle.getGlobalBounds().contains(
                 x_mouse_position, y_mouse_position)
@@ -23,7 +23,7 @@ bool press_select_button(
                 selection_list[j].select = false;
             }
         }
-        NextSlide.select = false;
+        next_slide.select = false;
         return true;
     }
     if (selection_list[i].select == true) {

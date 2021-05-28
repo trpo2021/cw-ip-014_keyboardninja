@@ -11,7 +11,7 @@ bool press_select_button(
         int i,
         int x_mouse_position,
         int y_mouse_position,
-        Button& NextSlide);
+        Button& next_slide);
 
 void event_key_press(
         sf::Event& event,
