@@ -178,6 +178,8 @@ void exam(int mode, int scale)
                 window.draw(scale_list[i].text);
                 window.draw(scale_list[i].graphic_scale);
             }
+            // JTextArea diagonstic_text = generate_diagnostic_text()
+            window.draw(generate_diagnostic_text(font, score_list).text);
         }
         window.display();
     }

@@ -25,4 +25,6 @@ std::string get_string_with_percents(int score);
 
 int calculate_percent(int score);
 
+JTextArea generate_diagnostic_text(sf::Font& font, std::vector<int> score_list);
+
 #endif
