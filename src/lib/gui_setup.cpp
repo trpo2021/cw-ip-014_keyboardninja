@@ -7,22 +7,22 @@
 #include <string>
 #include <vector>
 
-std::vector<JButton> generate_template_list(
+std::vector<Button> generate_template_list(
         sf::Font& font, const std::vector<std::string>& dictionary)
 {
-    std::vector<JButton> selection_list;
+    std::vector<Button> selection_list;
     for (long unsigned int i = 0,
                            y_begin_coordinate = 200,
                            m = dictionary.size();
          i < dictionary.size();
          i++, y_begin_coordinate += 50, m--) {
         selection_list.push_back(
-                JButton(300,
-                        y_begin_coordinate,
-                        20,
-                        m,
-                        sf::Text(draw_russian(dictionary[i]), font, 15),
-                        "select"));
+                Button(300,
+                       y_begin_coordinate,
+                       20,
+                       m,
+                       sf::Text(draw_russian(dictionary[i]), font, 15),
+                       "select"));
     }
     return selection_list;
 }

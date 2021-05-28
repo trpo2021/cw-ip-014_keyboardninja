@@ -8,13 +8,14 @@
 #include <vector>
 
 bool press_select_button(
-        std::vector<JButton>& selection_list,
+        std::vector<Button>& selection_list,
         int i,
-        int x_mouse,
-        int y_mouse,
-        JButton& NextSlide)
+        int x_mouse_position,
+        int y_mouse_position,
+        Button& next_slide)
 {
-    if (selection_list[i].rectangle.getGlobalBounds().contains(x_mouse, y_mouse)
+    if (selection_list[i].rectangle.getGlobalBounds().contains(
+                x_mouse_position, y_mouse_position)
         && (selection_list[i].select == false)) {
         selection_list[i].select = true;
         for (int j = 0; (long unsigned int)j < selection_list.size(); j++) {
@@ -22,7 +23,7 @@ bool press_select_button(
                 selection_list[j].select = false;
             }
         }
-        NextSlide.select = false;
+        next_slide.select = false;
         return true;
     }
     if (selection_list[i].select == true) {
@@ -34,7 +35,10 @@ bool press_select_button(
 }
 
 void event_key_press(
-        sf::Event& event, sf::RenderWindow& window, int& x_mouse, int& y_mouse)
+        sf::Event& event,
+        sf::RenderWindow& window,
+        int& x_mouse_position,
+        int& y_mouse_position)
 {
     if ((event.type == sf::Event::KeyPressed
          && event.key.code == sf::Keyboard::Escape)
@@ -42,14 +46,14 @@ void event_key_press(
         window.close();
     }
     if (event.type == sf::Event::MouseButtonPressed) {
-        x_mouse = event.mouseButton.x;
-        y_mouse = event.mouseButton.y;
-        std::cout << x_mouse << "<----->" << y_mouse << "\n";
+        x_mouse_position = event.mouseButton.x;
+        y_mouse_position = event.mouseButton.y;
+        std::cout << x_mouse_position << "<----->" << y_mouse_position << "\n";
     }
 }
 
 void add_score_scale(
-        JButton button, std::vector<int>& scale_list, int mode, int scale)
+        Button button, std::vector<int>& scale_list, int mode, int scale)
 {
     if (mode == GLOBAL) {
         for (int i = 0; i < 5; i++) {
