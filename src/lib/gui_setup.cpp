@@ -93,7 +93,7 @@ generate_scale_list(sf::Font& font, std::vector<int> score_list)
         scale_list.push_back(JScaleMettle(
                 450,
                 300,
-                sf::Text(draw_russian("Эмоциональная уст. "), font, 15),
+                sf::Text(draw_russian("Эмоциональная неуст. "), font, 15),
                 sf::Color::Blue,
                 calculate_percent(score_list[NEUROTICISM])));
         std::string score_percent
@@ -145,4 +145,70 @@ std::vector<JTextArea> generate_question_list_on_one_scale(
         current_question_number += 5;
     }
     return new_question_list;
+}
+
+JTextArea generate_diagnostic_text(sf::Font& font, std::vector<int> score_list)
+{
+    int max_scale_mettle = 0;
+    for (auto tmp_score : score_list) {
+        if (tmp_score > max_scale_mettle) {
+            max_scale_mettle = tmp_score;
+        }
+    }
+    if (max_scale_mettle == score_list[EXTRAVERSION]) {
+        sf::Text text(
+                draw_russian("Вы предрасположены к личностному фактору "
+                             "темперамента: Экстраверсия\nТипичные экстраверты "
+                             "отличаются общительностью, любят развлечения и "
+                             "коллективные мероприятия"),
+                font,
+                15);
+        return JTextArea(50, 400, text);
+    }
+    if (max_scale_mettle == score_list[AGREEABLENESS]) {
+        sf::Text text(
+                draw_russian("Вы предрасположены к личностному фактору "
+                             "темперамента: Привязанность\nТакие лица "
+                             "испытывают потребность быть рядом с другими "
+                             "людьми. Как правило, это добрые,\nотзывчивые "
+                             "люди, они хорошо понимают других людей"),
+                font,
+                15);
+        return JTextArea(50, 400, text);
+    }
+    if (max_scale_mettle == score_list[CONSCIENTIOUSNESS]) {
+        sf::Text text(
+                draw_russian("Вы предрасположены к личностному фактору "
+                             "темперамента: Самоконтроль\nТакие люди любят "
+                             "порядок и комфорт, они настойчивы в деятельности "
+                             "и обычно достигают\nв ней высоких результатов"),
+                font,
+                15);
+        return JTextArea(50, 400, text);
+    }
+    if (max_scale_mettle == score_list[NEUROTICISM]) {
+        sf::Text text(
+                draw_russian(
+                        "Вы предрасположены к личностному фактору "
+                        "темперамента: Эмоциональная неустойчивость\nВысокие "
+                        "значения по этому фактору характеризуют лиц, "
+                        "неспособных контролировать\nсвои эмоции и "
+                        "импульсивные влечения"),
+                font,
+                15);
+        return JTextArea(50, 400, text);
+    }
+    if (max_scale_mettle == score_list[OPENNESS]) {
+        sf::Text text(
+                draw_russian("Вы предрасположены к личностному фактору "
+                             "темперамента: Экспрессивность\nТакой человек "
+                             "часто не отличает вымысел от реальностей жизни. "
+                             "Он чаще доверяет своим\nчувствам и интуиции, чем "
+                             "здравому смыслу"),
+                font,
+                15);
+        return JTextArea(50, 400, text);
+    }
+    return JTextArea(50, 400, sf::Text("", font, 20));
+    ;
 }
