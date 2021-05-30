@@ -16,7 +16,7 @@ CTEST(gen_template_list, selection_list)
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    std::vector<JButton> selection_list
+    std::vector<Button> selection_list
             = generate_template_list(font, dictionary);
     sf::Text a(draw_russian(dictionary[0]), font, 15);
     bool result = a.getString() == selection_list[0].button_text.getString();
@@ -33,7 +33,7 @@ CTEST(gen_template_list, wrong_strings)
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    std::vector<JButton> selection_list
+    std::vector<Button> selection_list
             = generate_template_list(font, dictionary);
     sf::Text a(draw_russian(dictionary[1]), font, 15);
     bool result = a.getString() == selection_list[0].button_text.getString();
@@ -50,16 +50,16 @@ CTEST(gen_template_list, buillding_template_list)
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    std::vector<JButton> selection_list1
+    std::vector<Button> selection_list1
             = generate_template_list(font, dictionary);
-    std::vector<JButton> selection_list2;
+    std::vector<Button> selection_list2;
     for (long unsigned int i = 0,
                            y_begin_coordinate = 200,
                            m = dictionary.size();
          i < dictionary.size();
          i++, y_begin_coordinate += 50, m--) {
         selection_list2.push_back(
-                JButton(300,
+                Button(300,
                         y_begin_coordinate,
                         20,
                         m,
@@ -85,16 +85,16 @@ CTEST(gen_template_list, fail_building_template_list)
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    std::vector<JButton> selection_list1
+    std::vector<Button> selection_list1
             = generate_template_list(font, dictionary);
-    std::vector<JButton> selection_list2;
+    std::vector<Button> selection_list2;
     for (long unsigned int i = 0,
                            y_begin_coordinate = 200,
                            m = dictionary.size();
          i < dictionary.size();
          i++, y_begin_coordinate += 50, m--) {
         selection_list2.push_back(
-                JButton(300,
+                Button(300,
                         y_begin_coordinate,
                         20,
                         m,
@@ -366,7 +366,6 @@ CTEST(questions_list, generating_questions_list_on_one_scale_agreableness)
 
     ASSERT_TRUE(is_equal);
 }
-
 
 
 

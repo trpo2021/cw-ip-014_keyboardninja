@@ -40,9 +40,9 @@ void exam(int mode, int scale)
     dictionary.push_back("Не знаю");
     dictionary.push_back("Скорее да, чем нет");
     dictionary.push_back("Да");
-    std::vector<JButton> selection_list
+    std::vector<Button> selection_list
             = generate_template_list(font, dictionary);
-    std::vector<std::vector<JButton>> slide_selection_list;
+    std::vector<std::vector<Button>> slide_selection_list;
     std::vector<JScaleMettle> scale_list;
     std::vector<int> score_list(5, 0);
     std::string line;
@@ -50,22 +50,22 @@ void exam(int mode, int scale)
     std::ifstream in(path);
     long unsigned int question = 0;
     bool press = false;
-    int x_mouse = 0;
-    int y_mouse = 0;
+    int x_mouse_position = 0;
+    int y_mouse_position = 0;
     bool flag_updating_scale = false;
     std::ostringstream score_point;
     sf::RenderWindow window(
             sf::VideoMode(W, H),
             "QuizRunner",
             sf::Style::Titlebar | sf::Style::Close);
-    JButton NextSlide(
+    Button next_slide(
             500,
             400,
             20,
             0,
             sf::Text(draw_russian("Следующий вопрос"), font, 15),
             "service");
-    JButton PrevSlide(
+    Button PrevSlide(
             80,
             400,
             20,
@@ -94,18 +94,18 @@ void exam(int mode, int scale)
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            event_key_press(event, window, x_mouse, y_mouse);
+            event_key_press(event, window, x_mouse_position, y_mouse_position);
             key_flip(
                     event,
                     PrevSlide.rectangle.getGlobalBounds().contains(
-                            x_mouse, y_mouse),
+                            x_mouse_position, y_mouse_position),
                     question,
                     0,
                     press);
             key_flip(
                     event,
-                    NextSlide.rectangle.getGlobalBounds().contains(
-                            x_mouse, y_mouse),
+                    next_slide.rectangle.getGlobalBounds().contains(
+                            x_mouse_position, y_mouse_position),
                     question,
                     1,
                     press);
@@ -117,9 +117,9 @@ void exam(int mode, int scale)
             counter.update(question + 1);
             window.draw(counter.text);
             if (question == questions_list.size() - 1)
-                NextSlide.button_text.setString(draw_russian("Завершить"));
+                next_slide.button_text.setString(draw_russian("Завершить"));
             else {
-                NextSlide.button_text.setString(
+                next_slide.button_text.setString(
                         draw_russian("Следующий вопрос"));
             }
             for (long unsigned int j = 0;
@@ -130,9 +130,9 @@ void exam(int mode, int scale)
                 press_select_button(
                         slide_selection_list[question],
                         j,
-                        x_mouse,
-                        y_mouse,
-                        NextSlide);
+                        x_mouse_position,
+                        y_mouse_position,
+                        next_slide);
             }
             for (long unsigned int j = 0;
                  j < slide_selection_list[question].size();
@@ -141,20 +141,21 @@ void exam(int mode, int scale)
                     press = true;
                 }
             }
-            window.draw(NextSlide.rectangle);
-            window.draw(NextSlide.button_text);
+            window.draw(next_slide.rectangle);
+            window.draw(next_slide.button_text);
             if (question != 0) {
                 window.draw(PrevSlide.rectangle);
                 window.draw(PrevSlide.button_text);
             }
-            if (NextSlide.rectangle.getGlobalBounds().contains(x_mouse, y_mouse)
-                && (NextSlide.select == false)) {
+            if (next_slide.rectangle.getGlobalBounds().contains(
+                        x_mouse_position, y_mouse_position)
+                && (next_slide.select == false)) {
                 for (long unsigned int j = 0;
                      j < slide_selection_list[question].size();
                      j++) {
                     slide_selection_list[question][j].ques = question;
                 }
-                NextSlide.select = true;
+                next_slide.select = true;
             }
         } else {
             if (!flag_updating_scale) {
@@ -178,6 +179,8 @@ void exam(int mode, int scale)
                 window.draw(scale_list[i].text);
                 window.draw(scale_list[i].graphic_scale);
             }
+            // JTextArea diagonstic_text = generate_diagnostic_text()
+            window.draw(generate_diagnostic_text(font, score_list).text);
         }
         window.display();
     }

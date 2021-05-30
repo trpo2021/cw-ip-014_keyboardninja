@@ -9,7 +9,7 @@
 sf::String
 draw_russian(std::string line); //Используйте её для отрисовки русского текста
 
-std::vector<JButton> generate_template_list(
+std::vector<Button> generate_template_list(
         sf::Font& font, const std::vector<std::string>& dictionary);
 
 std::vector<JTextArea>
@@ -24,5 +24,7 @@ generate_scale_list(sf::Font& font, std::vector<int> score_list);
 std::string get_string_with_percents(int score);
 
 int calculate_percent(int score);
+
+JTextArea generate_diagnostic_text(sf::Font& font, std::vector<int> score_list);
 
 #endif
