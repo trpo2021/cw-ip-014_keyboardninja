@@ -18,3 +18,11 @@ CTEST(calculate_result, percent_value2)
     int expected = 73;
     ASSERT_EQUAL(expected, result);
 }
+
+CTEST(calculate_result, percent_value3)
+{
+    int score = 25;
+    int result = calculate_percent(score);
+    int expected = 33;
+    ASSERT_EQUAL(expected, result);
+}
