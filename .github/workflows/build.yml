@@ -1,0 +1,19 @@
+name: Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check codestyle
+        run: git ls-files *.{cpp,h} | xargs clang-format -i && git diff --exit-code
+
+      - name: Build application
+        run: sudo apt install cmake-gui libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev libgl1-mesa-dev xorg-dev && make
+
+      - name: Build tests
+        run: sudo apt install cmake-gui libpthread-stubs0-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev libgl1-mesa-dev xorg-dev && make test
