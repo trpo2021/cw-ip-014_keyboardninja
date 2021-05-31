@@ -81,7 +81,6 @@ struct Button {
             ques = 0;
         }
         if (type == "service") {
-            std::cout << "Part of Thread----->" << std::endl;
             this->select = true;
         }
     }
