@@ -60,11 +60,11 @@ CTEST(gen_template_list, buillding_template_list)
          i++, y_begin_coordinate += 50, m--) {
         selection_list2.push_back(
                 Button(300,
-                        y_begin_coordinate,
-                        20,
-                        m,
-                        sf::Text(draw_russian(dictionary[i]), font, 15),
-                        "select"));
+                       y_begin_coordinate,
+                       20,
+                       m,
+                       sf::Text(draw_russian(dictionary[i]), font, 15),
+                       "select"));
     }
     bool result = true;
     for (unsigned long int i = 0; i < selection_list1.size(); i++) {
@@ -95,11 +95,11 @@ CTEST(gen_template_list, fail_building_template_list)
          i++, y_begin_coordinate += 50, m--) {
         selection_list2.push_back(
                 Button(300,
-                        y_begin_coordinate,
-                        20,
-                        m,
-                        sf::Text(draw_russian(dictionary[i + 1]), font, 15),
-                        "select"));
+                       y_begin_coordinate,
+                       20,
+                       m,
+                       sf::Text(draw_russian(dictionary[i + 1]), font, 15),
+                       "select"));
     }
     bool result = true;
     for (unsigned long int i = 0; i < selection_list1.size(); i++) {
@@ -366,6 +366,3 @@ CTEST(questions_list, generating_questions_list_on_one_scale_agreableness)
 
     ASSERT_TRUE(is_equal);
 }
-
-
-

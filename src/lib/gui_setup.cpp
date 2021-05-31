@@ -137,7 +137,7 @@ sf::String draw_russian(std::string line)
 
 std::vector<JTextArea> generate_question_list_on_one_scale(
         std::vector<JTextArea> question_list, int scale_number)
-{ 
+{
     std::vector<JTextArea> new_question_list;
     int current_question_number = scale_number;
     while (current_question_number < 75) {
