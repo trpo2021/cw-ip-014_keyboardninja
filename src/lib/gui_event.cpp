@@ -48,7 +48,6 @@ void event_key_press(
     if (event.type == sf::Event::MouseButtonPressed) {
         x_mouse_position = event.mouseButton.x;
         y_mouse_position = event.mouseButton.y;
-        std::cout << x_mouse_position << "<----->" << y_mouse_position << "\n";
     }
 }
 
