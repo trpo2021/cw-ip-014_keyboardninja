@@ -7,15 +7,18 @@
 #include <vector>
 
 bool press_select_button(
-        std::vector<JButton>& selection_list,
+        std::vector<Button>& selection_list,
         int i,
-        int x_mouse,
-        int y_mouse,
-        JButton& NextSlide);
+        int x_mouse_position,
+        int y_mouse_position,
+        Button& next_slide);
 
 void event_key_press(
-        sf::Event& event, sf::RenderWindow& window, int& x_mouse, int& y_mouse);
+        sf::Event& event,
+        sf::RenderWindow& window,
+        int& x_mouse_position,
+        int& y_mouse_position);
 
 void add_score_scale(
-        JButton button, std::vector<int>& scale_list, int mode, int scale);
+        Button button, std::vector<int>& scale_list, int mode, int scale);
 #endif

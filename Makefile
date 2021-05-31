@@ -46,13 +46,13 @@ obj/src/%.o: src/%.cpp
 	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib
 
 test: $(TESTTARGET)
-	./$(TESTTARGET)
+	cd bin; export LD_LIBRARY_PATH=../$(SFMLLIB) && ./testquizrunner
 
 $(TESTTARGET): $(TESTOBJ) $(CTEST) $(LIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L$(LIB) -I src/lib -Ithirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L. $(LIB) -I src/lib -Ithirdparty -L$(SFMLLIB) $(LIBS) 
 
-obj/test/%.o: test/%.cpp $(CTEST)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -Isrc/lib -Ithirdparty
+obj/test/%.o: test/%.cpp $(CTEST) $(LIB)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -Isrc/lib -Ithirdparty -I$(SFMLINCLUDE)
 	
 clean:
 	find . -name "*.d" -exec rm {} \;
@@ -64,5 +64,6 @@ clean:
 format:
 	cd src; find . -name "*.cpp" -exec clang-format -i {} \; 
 	cd src; find . -name "*.h" -exec clang-format -i {} \; 
+	cd test; find . -name "*.cpp" -exec clang-format -i {} \;  
 	
 .PHONY: clean run test all format

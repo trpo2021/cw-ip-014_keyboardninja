@@ -7,22 +7,22 @@
 #include <string>
 #include <vector>
 
-std::vector<JButton> generate_template_list(
+std::vector<Button> generate_template_list(
         sf::Font& font, const std::vector<std::string>& dictionary)
 {
-    std::vector<JButton> selection_list;
+    std::vector<Button> selection_list;
     for (long unsigned int i = 0,
                            y_begin_coordinate = 200,
                            m = dictionary.size();
          i < dictionary.size();
          i++, y_begin_coordinate += 50, m--) {
         selection_list.push_back(
-                JButton(300,
-                        y_begin_coordinate,
-                        20,
-                        m,
-                        sf::Text(draw_russian(dictionary[i]), font, 15),
-                        "select"));
+                Button(300,
+                       y_begin_coordinate,
+                       20,
+                       m,
+                       sf::Text(draw_russian(dictionary[i]), font, 15),
+                       "select"));
     }
     return selection_list;
 }
@@ -93,7 +93,7 @@ generate_scale_list(sf::Font& font, std::vector<int> score_list)
         scale_list.push_back(JScaleMettle(
                 450,
                 300,
-                sf::Text(draw_russian("Эмоциональная уст. "), font, 15),
+                sf::Text(draw_russian("Эмоциональная неуст. "), font, 15),
                 sf::Color::Blue,
                 calculate_percent(score_list[NEUROTICISM])));
         std::string score_percent
@@ -137,7 +137,7 @@ sf::String draw_russian(std::string line)
 
 std::vector<JTextArea> generate_question_list_on_one_scale(
         std::vector<JTextArea> question_list, int scale_number)
-{ //Номер шкалы от 0 до 4
+{
     std::vector<JTextArea> new_question_list;
     int current_question_number = scale_number;
     while (current_question_number < 75) {
@@ -145,4 +145,97 @@ std::vector<JTextArea> generate_question_list_on_one_scale(
         current_question_number += 5;
     }
     return new_question_list;
+}
+
+JTextArea generate_diagnostic_text(sf::Font& font, std::vector<int> score_list)
+{
+    int max_scale_mettle = 0;
+    sf::Text diagnostic_text("", font, 15);
+    for (auto tmp_score : score_list) {
+        if (tmp_score > max_scale_mettle) {
+            max_scale_mettle = tmp_score;
+        }
+    }
+    if (max_scale_mettle == score_list[EXTRAVERSION]) {
+        if (calculate_percent(max_scale_mettle) >= 50) {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Экстраверсия\nТипичные экстраверты "
+                    "отличаются общительностью, любят развлечения и "
+                    "коллективные мероприятия"));
+        } else {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Интроверсия\nОсновными особенностями "
+                    "интровертов являются отсутствие уверенности в отношении\n "
+                    "правильности своего поведения и невнимание к происходящим "
+                    "вокруг событиям"));
+        }
+    }
+    if (max_scale_mettle == score_list[AGREEABLENESS]) {
+        if (calculate_percent(max_scale_mettle) >= 50) {
+            diagnostic_text.setString(
+                    draw_russian("Вы предрасположены к личностному фактору "
+                                 "темперамента: Привязанность\nТакие лица "
+                                 "испытывают потребность быть рядом с другими "
+                                 "людьми. Как правило, это добрые,\nотзывчивые "
+                                 "люди, они хорошо понимают других людей"));
+        } else {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Обособленность\nТакие люди предпочитают "
+                    "держать дистанцию, иметь обособленную позицию при "
+                    "взаимодействии\nс другими"));
+        }
+    }
+    if (max_scale_mettle == score_list[CONSCIENTIOUSNESS]) {
+        if (calculate_percent(max_scale_mettle) >= 50) {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Самоконтроль\nТакие люди любят "
+                    "порядок и комфорт, они настойчивы в деятельности "
+                    "и обычно достигают\nв ней высоких результатов"));
+        } else {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Импульсивность\nЭто такой тип личности, для "
+                    "которого характерны естественность поведения, "
+                    "беспечность,\nсклонность к необдуманным поступкам"));
+        }
+    }
+    if (max_scale_mettle == score_list[NEUROTICISM]) {
+        if (calculate_percent(max_scale_mettle) >= 50) {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Эмоциональная неустойчивость\nВысокие "
+                    "значения по этому фактору характеризуют лиц, "
+                    "неспособных контролировать\nсвои эмоции и "
+                    "импульсивные влечения"));
+        } else {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Эмоциональная устойчивость\nНа жизнь такие "
+                    "люди смотрят серьезно и реалистично, хорошо осознают "
+                    "требования\nдействительности, не скрывают от себя "
+                    "собственных недостатков"));
+        }
+    }
+    if (max_scale_mettle == score_list[OPENNESS]) {
+        if (calculate_percent(max_scale_mettle) >= 50) {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Экспрессивность\nТакой человек "
+                    "часто не отличает вымысел от реальностей жизни. "
+                    "Он чаще доверяет своим\nчувствам и интуиции, чем "
+                    "здравому смыслу"));
+        } else {
+            diagnostic_text.setString(draw_russian(
+                    "Вы предрасположены к личностному фактору "
+                    "темперамента: Практичность\nТакой человек часто озабочен "
+                    "своими материальными проблемами, упорно работает и "
+                    "проявляет\nзавидную настойчивость, воплощая в жизнь свои "
+                    "планы."));
+        }
+    }
+    return JTextArea(50, 400, diagnostic_text);
 }
